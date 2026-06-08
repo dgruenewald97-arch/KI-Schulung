@@ -3,11 +3,167 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='8'%20fill='%230a0e0d'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='8'%20fill='%233ee08f'/%3E%3C/svg%3E" />
+    <meta name="description" content="KI-Schulung für Mobility Minds: sichere, kundenzentrierte Prompts für den Agenturalltag." />
     <title>KI-Mitmach-Guide · Mobility Minds</title>
+    <link rel="icon" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="assets/styles.css" />
   </head>
   <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="topbar-inner">
+          <div class="brand-mark" aria-label="Mobility Minds KI-Mitmach-Guide">
+            <span class="brand-dot"></span>
+            <span>KI-Mitmach-Guide</span>
+          </div>
+          <div class="progress-label">
+            <span id="sectionName">Start</span>
+            <strong id="stepCount">1 / 8</strong>
+          </div>
+        </div>
+        <div class="progress-track"><div id="progressFill" class="progress-fill"></div></div>
+      </header>
+
+      <main class="wrap">
+        <section class="screen active" data-screen="start">
+          <span class="eyebrow">Mobility Minds · KI-Grundlagen</span>
+          <h1>KI nutzen, ohne den Kundenkontext zu verlieren.</h1>
+          <p class="lede">
+            Diese Schulung zeigt nicht nur Prompting allgemein. Sie hilft dir, aus einer echten Agentur- oder Kundenaufgabe
+            einen brauchbaren Prompt für Langdock zu bauen.
+          </p>
+          <div class="card intro-card">
+            <h2>Der rote Faden</h2>
+            <p>Erst klären wir, wann KI hilft. Dann wählst du Rolle und Kundentyp. Danach vergleichst du schwache und gute Prompts, testest dein Wissen und baust deinen eigenen Kundenprompt.</p>
+          </div>
+          <div class="pill-row">
+            <span>statisch auf GitHub Pages</span>
+            <span>kein Build</span>
+            <span>Prompts für echte Kundenarbeit</span>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="basics">
+          <span class="eyebrow">Grundlagen</span>
+          <h2>KI ist ein Arbeitsmittel, kein Autopilot.</h2>
+          <p class="lede">Gute KI-Arbeit heißt: klar briefen, Kontext mitgeben, Ergebnisse prüfen und Kundendaten schützen.</p>
+          <div id="basicsGrid" class="grid two"></div>
+        </section>
+
+        <section class="screen" data-screen="compass">
+          <span class="eyebrow">KI-Kompass</span>
+          <h2>Welche Methode passt zur Aufgabe?</h2>
+          <p class="lede">Nicht jeder Auftrag braucht denselben Prompt. Erst die Situation klären, dann die Methode wählen.</p>
+          <div id="compassGrid" class="compass-grid"></div>
+        </section>
+
+        <section class="screen" data-screen="context">
+          <span class="eyebrow">Rolle & Kunde</span>
+          <h2>Erst damit wird es maßgeschneidert.</h2>
+          <p class="lede">Wähle deinen Arbeitsbereich und einen typischen Kundentyp. Die Prompt-Vorlagen und Werkstatt nutzen diesen Kontext automatisch.</p>
+          <div class="card">
+            <h3>Dein Arbeitsbereich</h3>
+            <div id="roleChips" class="chips"></div>
+          </div>
+          <div class="card">
+            <h3>Typischer Kunde oder Projektkontext</h3>
+            <div id="clientChips" class="chips"></div>
+          </div>
+          <div class="card context-preview">
+            <h3>Aktueller Prompt-Kontext</h3>
+            <pre id="contextPreview"></pre>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="duel">
+          <span class="eyebrow">Prompt-Vergleich</span>
+          <h2>Der Unterschied ist nicht Länge. Es ist Kontext.</h2>
+          <p class="lede">Links ist der typische Schnellschuss. Rechts ist ein kundentauglicher Prompt mit Mobility-Minds-, Rollen- und Kundenkontext.</p>
+          <div class="card">
+            <h3 id="duelTitle"></h3>
+            <p id="duelScenario" class="muted"></p>
+          </div>
+          <div class="duel-grid">
+            <article class="duel-card bad">
+              <h3>Schwacher Prompt</h3>
+              <pre id="badPrompt"></pre>
+            </article>
+            <article class="duel-card good">
+              <h3>Starker Prompt</h3>
+              <pre id="goodPrompt"></pre>
+              <button class="btn ghost copy-btn" data-copy-target="goodPrompt">Vorlage kopieren</button>
+            </article>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="methods">
+          <span class="eyebrow">Prompt-Bibliothek</span>
+          <h2>Vier Vorlagen für den Alltag.</h2>
+          <p class="lede">Diese Prompts sind bewusst so gebaut, dass Kunde, Zielgruppe, Kanal und Tonalität nicht vergessen werden.</p>
+          <div id="methodTabs" class="method-tabs"></div>
+          <article class="card method-card">
+            <h3 id="methodTitle"></h3>
+            <p id="methodIntro" class="muted"></p>
+            <pre id="methodPrompt" class="prompt-box"></pre>
+            <div class="method-actions">
+              <button class="btn ghost copy-btn" data-copy-target="methodPrompt">Vorlage kopieren</button>
+            </div>
+          </article>
+        </section>
+
+        <section class="screen" data-screen="quiz">
+          <span class="eyebrow">Mini-Quiz</span>
+          <h2>Sitzt der wichtigste Gedanke?</h2>
+          <p class="lede">Kurzer Check: nicht auswendig lernen, sondern die richtige Haltung festziehen.</p>
+          <div id="quizWrap" class="quiz-wrap"></div>
+          <div id="quizResult" class="card result-card hidden"></div>
+        </section>
+
+        <section class="screen" data-screen="workshop">
+          <span class="eyebrow">Werkstatt</span>
+          <h2>Baue deinen eigenen Kundenprompt.</h2>
+          <p class="lede">Füll die Felder aus. Der fertige Prompt entsteht darunter und kann direkt nach Langdock kopiert werden.</p>
+          <div class="card workshop">
+            <label>Ziel <span>Was soll am Ende entstehen?</span></label>
+            <textarea id="fieldGoal" rows="3"></textarea>
+
+            <label>Kontext <span>Firma, Kunde, Zielgruppe, Kanal, Situation</span></label>
+            <textarea id="fieldContext" rows="8"></textarea>
+
+            <label>Material <span>Kundenbriefing, Rohtext, Stichpunkte, Zahlen, Entwurf</span></label>
+            <textarea id="fieldMaterial" rows="5" placeholder="Hier echtes Material einfügen oder vertrauliche Details erst in Langdock ergänzen."></textarea>
+
+            <label>Format <span>Wie soll die Antwort aussehen?</span></label>
+            <textarea id="fieldFormat" rows="3"></textarea>
+
+            <label>Ton & Richtlinien <span>Kundenmarke, No-Gos, Faktencheck</span></label>
+            <textarea id="fieldTone" rows="4"></textarea>
+          </div>
+          <div class="card">
+            <h3>Dein fertiger Prompt</h3>
+            <pre id="assembledPrompt" class="prompt-box"></pre>
+            <div id="promptCheck" class="check-list"></div>
+            <button class="btn ghost copy-btn" data-copy-target="assembledPrompt">Prompt kopieren</button>
+          </div>
+        </section>
+
+        <section class="screen" data-screen="finish">
+          <span class="eyebrow">Abschluss</span>
+          <h2>Die Regel für echte Arbeit.</h2>
+          <p class="lede">Ein guter Prompt ist kein Zauberspruch. Er ist ein sauberes Mini-Briefing: Ziel, Kontext, Material, Format, Ton und Prüfung.</p>
+          <div class="card">
+            <h3>Prompt-Spickzettel</h3>
+            <pre id="cheatSheet" class="prompt-box"></pre>
+            <button class="btn ghost copy-btn" data-copy-target="cheatSheet">Spickzettel kopieren</button>
+          </div>
+        </section>
+
+        <nav class="nav">
+          <button id="prevBtn" class="btn ghost">Zurück</button>
+          <button id="nextBtn" class="btn primary">Weiter</button>
+        </nav>
+      </main>
+    </div>
+    <script src="assets/app.js"></script>
   </body>
 </html>
