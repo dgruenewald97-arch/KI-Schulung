@@ -1,0 +1,40 @@
+# Projekt-Kontext für Claude Code
+
+## Was das ist
+Ein self-paced, interaktives Web-Tool fürs Agentur-Team (Mobility Minds),
+das die Inhalte des snipKI KI-Führerscheins **Modul 1** vermittelt:
+Grundlagen, Prompting, eigene Prompts bauen, Berührungsängste abbauen.
+
+Stack: **Vite + React** (eine Komponente in `src/App.jsx`, Styles inline
+in einem `<style>`-Block). Sprache der Oberfläche: **informelles Deutsch**.
+
+## Aufbau (6 Stationen)
+1. Mythen-Check (Flip-Karten)
+2. So tickt KI (3 Lernkarten)
+3. Prompt-Duell (fauler vs. starker Prompt, mit Beispielantworten – läuft offline)
+4. Prompt-Werkstatt (eigenen Prompt bauen → testen → von KI verbessern lassen)
+5. Mini-Quiz
+6. Abschluss + eigene Use Cases
+
+## Daten-Layer (alles in src/App.jsx)
+`ROLES`, `MYTHS`, `LEARN`, `DUELS`, `QUIZ`.
+
+## Wichtige offene To-Dos (Priorität von oben)
+1. **Rollen-Logik vertiefen.** Aktuell injiziert jede Rolle nur einen
+   Kontext-Satz. Gewünscht: pro Rolle (Beratung, Kreation, PM, Social,
+   Analyse, Sonstiges) wirklich passende Szenarien & Beispiele –
+   z. B. eigene Duell-Aufgaben oder Werkstatt-Vorschläge je Rolle.
+2. **Werkstatt live schalten.** `callClaude()` ist ein Stub. An einen
+   eigenen Backend-Proxy / Langdock anbinden. API-Key NIE ins Frontend.
+3. Optional: Hosting (statisches Deployment des `dist`-Ordners).
+
+## Designprinzipien
+- Dunkles UI, snipKI-Grün als Akzent, bewusst **kein** generisches
+  „AI-Grau“.
+- Datenschutz-Hinweise an Eingabestellen behalten (Botschaft aus Modul 1:
+  keine vertraulichen Daten in private Tools, im Job Langdock nutzen).
+- Umlaute als echtes UTF-8 (keine \uXXXX-Escapes).
+
+## Quelle der Inhalte
+Das Modul-1-Playbook (PDF) liefert die fachlichen Inhalte. Falls es nicht
+im Ordner liegt, beim Nutzer anfragen.
