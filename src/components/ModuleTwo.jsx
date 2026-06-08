@@ -19,11 +19,6 @@ export default function ModuleTwo({ back }) {
             <p>Hier entsteht der zweite Teil, sobald die Inhalte aus der Schulung feststehen.</p>
           </div>
         </div>
-        <div className="preview-list">
-          <span>Workflows statt Einzelprompts</span>
-          <span>Praxisfälle aus dem Team</span>
-          <span>Qualität sichern und Ergebnisse weiterverarbeiten</span>
-        </div>
       </div>
 
       <div style={{ marginTop: 28 }}>
