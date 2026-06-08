@@ -24,8 +24,10 @@ Material:
 Format:
 [z.B. Mail, Agenda, LinkedIn-Post, Tabelle, 5 Bulletpoints]
 
-Ton & Grenzen:
-[z.B. professionell, klar, keine neuen Fakten erfinden, Annahmen kennzeichnen]`,
+Ton & Richtlinien:
+[z.B. professionell, klar, keine neuen Fakten erfinden, Annahmen kennzeichnen]
+
+Wenn dir für ein gutes Ergebnis etwas fehlt, frag lieber kurz nach, statt zu raten.`,
     takeaway: "Gut für: Texte, Zusammenfassungen, erste Entwürfe, Struktur, Varianten.",
   },
   {
