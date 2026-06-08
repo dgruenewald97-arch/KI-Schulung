@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Wand2, Play, Loader2, Sparkles, Shield, X } from "lucide-react";
+import { Wand2, Play, Loader2, Copy, Check, Shield, X } from "lucide-react";
 import { callClaude } from "../api/callClaude.js";
 
 export default function Workshop({ role }) {
@@ -8,9 +8,9 @@ export default function Workshop({ role }) {
   const [format, setFormat] = useState("");
   const [ton, setTon] = useState("");
   const [loading, setLoading] = useState(false);
-  const [mode, setMode] = useState("");
   const [out, setOut] = useState("");
   const [err, setErr] = useState("");
+  const [copied, setCopied] = useState(false);
 
   const assembled =
 `# Ziel
@@ -27,20 +27,20 @@ ${ton || "… Tonfall, Do's & Don'ts (optional)"}`;
 
   const run = async () => {
     if (!ziel.trim()) { setErr("Gib zumindest ein Ziel ein – das ist das Herz des Prompts."); return; }
-    setLoading(true); setMode("test"); setErr(""); setOut("");
+    setLoading(true); setErr(""); setOut("");
     try { setOut(await callClaude(assembled)); }
     catch { setErr("Da ging etwas schief – gleich nochmal versuchen."); }
     finally { setLoading(false); }
   };
 
-  const improve = async () => {
-    if (!ziel.trim()) { setErr("Füll zumindest das Ziel aus, dann poliert die KI deinen Prompt."); return; }
-    setLoading(true); setMode("improve"); setErr(""); setOut("");
+  const copy = async () => {
+    if (!ziel.trim()) { setErr("Füll zumindest das Ziel aus, dann lohnt sich das Kopieren."); return; }
+    setErr("");
     try {
-      const meta = `Du bist ein Prompt-Coach. Hier ist der Prompt-Entwurf einer Kollegin/eines Kollegen:\n\n"""${assembled}"""\n\nVerbessere ihn: behalte die Struktur (Ziel, Kontext, Format, Ton), mach ihn präziser und konkreter, und erkläre in 2-3 Stichpunkten, was du warum geändert hast. Antworte auf Deutsch.`;
-      setOut(await callClaude(meta));
-    } catch { setErr("Da ging etwas schief – gleich nochmal versuchen."); }
-    finally { setLoading(false); }
+      await navigator.clipboard.writeText(assembled);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { setErr("Kopieren hat nicht geklappt – markier den Prompt oben einfach von Hand."); }
   };
 
   return (
@@ -73,10 +73,10 @@ ${ton || "… Tonfall, Do's & Don'ts (optional)"}`;
 
       <div style={{ display: "flex", gap: 12, marginTop: 18, flexWrap: "wrap" }}>
         <button className="btn btn-primary" onClick={run} disabled={loading}>
-          {loading && mode === "test" ? <><Loader2 size={17} className="spin" /> Testet …</> : <><Play size={17} /> Prompt testen</>}
+          {loading ? <><Loader2 size={17} className="spin" /> Prüft …</> : <><Play size={17} /> Prompt prüfen</>}
         </button>
-        <button className="btn btn-ghost" onClick={improve} disabled={loading}>
-          {loading && mode === "improve" ? <><Loader2 size={17} className="spin" /> Poliert …</> : <><Sparkles size={17} /> KI verbessert meinen Prompt</>}
+        <button className="btn btn-ghost" onClick={copy} disabled={loading}>
+          {copied ? <><Check size={17} /> Kopiert!</> : <><Copy size={17} /> Prompt kopieren</>}
         </button>
       </div>
 
@@ -84,7 +84,7 @@ ${ton || "… Tonfall, Do's & Don'ts (optional)"}`;
 
       {out && (
         <div className="card" style={{ marginTop: 18, borderColor: "rgba(62,224,143,.28)" }}>
-          <div className="label" style={{ padding: 0, marginBottom: 10 }}>{mode === "improve" ? "Verbesserter Prompt + Begründung" : "Antwort auf deinen Prompt"}</div>
+          <div className="label" style={{ padding: 0, marginBottom: 10 }}>Offline-Check deines Prompts</div>
           <div style={{ whiteSpace: "pre-wrap", fontSize: 14.5 }}>{out}</div>
         </div>
       )}

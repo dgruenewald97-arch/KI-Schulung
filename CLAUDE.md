@@ -11,7 +11,7 @@ Stack: **Vite + React**. Sprache der Oberfläche: **informelles Deutsch**.
 1. Mythen-Check (Flip-Karten)
 2. So tickt KI (3 Lernkarten)
 3. Prompt-Duell (fauler vs. starker Prompt, mit Beispielantworten – läuft offline)
-4. Prompt-Werkstatt (eigenen Prompt bauen → testen → von KI verbessern lassen)
+4. Prompt-Werkstatt (eigenen Prompt aus 4 Bausteinen bauen → Offline-Check → kopieren für Langdock)
 5. Mini-Quiz
 6. Abschluss + eigene Use Cases
 
@@ -23,7 +23,7 @@ src/
   main.jsx              · React-Entry, lädt App + styles.css
   App.jsx               · Stepper/Navigation, verteilt auf die Stationen
   styles.css            · gesamtes UI (dunkel, snipKI-Grün)
-  api/callClaude.js     · Backend-Stub für Station 4 (noch nicht live)
+  api/callClaude.js     · Offline-Feedback für Station 4 (bewusst KEINE echte KI)
   data/
     roles.js            · ROLES (Rolle, Kontext, Werkstatt-Tipp)
     duels.js            · SCENARIOS – Duell-Szenarien JE ROLLE
@@ -41,12 +41,21 @@ aus `roles.js`) wird in den „starken“ Prompt sichtbar eingebaut, damit
 der Lerneffekt „Kontext gehört rein“ greift. Neue Szenarien immer unter
 der passenden Rollen-ID in `SCENARIOS` ergänzen.
 
-## Offene To-Dos (Priorität von oben)
-1. **Werkstatt live schalten.** `callClaude()` in `src/api/callClaude.js`
-   ist ein Stub. An einen eigenen Backend-Proxy / Langdock anbinden.
-   API-Key NIE ins Frontend.
-2. Optional: weitere Szenarien je Rolle ergänzen.
-3. Optional: Hosting (statisches Deployment des `dist`-Ordners).
+## Bewusste Entscheidung: keine echte KI im Tool
+Station 4 läuft absichtlich **komplett offline**. Es wird **kein**
+KI-Modell angebunden. Die Werkstatt dient dem Üben (Prompt aus
+Ziel · Kontext · Format · Ton bauen); den fertigen Prompt nimmt man dann
+mit ins echte Tool (Langdock). `src/api/callClaude.js` gibt nur eine
+lokale Rückmeldung zum gebauten Prompt – keine generierte Antwort.
+
+## Deployment
+GitHub Pages, automatisch über `.github/workflows/deploy.yml` bei jedem
+Push auf `main`. `vite.config.js` setzt beim Build `base: "/KI-Schulung/"`
+(Repo-Name) – beim Umbenennen des Repos hier anpassen.
+
+## Offene To-Dos (optional)
+1. Weitere Szenarien je Rolle ergänzen (in `SCENARIOS`).
+2. Inhalte aus späteren Modulen einbauen.
 
 ## Designprinzipien
 - Dunkles UI, snipKI-Grün als Akzent, bewusst **kein** generisches

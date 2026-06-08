@@ -34,21 +34,29 @@ src/
   components/           eine Komponente je Station
 ```
 
-## Was läuft schon, was kommt noch
+## Komplett offline – keine echte KI
+
+Das Tool läuft **bewusst ohne KI-Anbindung**:
 
 - **Stationen 1–3, 5, 6** laufen komplett offline.
 - **Station 3 (Prompt-Duell)** zeigt vorbereitete, **rollenspezifische**
   Beispielantworten – der Aha-Moment funktioniert ohne Backend.
-- **Station 4 (Werkstatt)** ruft `callClaude()` in `src/api/callClaude.js`
-  auf. Das ist aktuell ein **Stub** (Platzhalter), damit alles ohne Server
-  läuft.
+- **Station 4 (Werkstatt)** dient dem Üben: man baut den Prompt aus
+  Ziel · Kontext · Format · Ton zusammen, bekommt einen kurzen
+  **Offline-Check** und kopiert den fertigen Prompt für **Langdock**.
+  Es ist absichtlich **kein** KI-Modell angebunden.
 
-## Live schalten (Werkstatt mit echter KI)
+## Auf GitHub Pages veröffentlichen
 
-In `src/api/callClaude.js` die Funktion `callClaude()` anpassen, sodass sie
-einen **eigenen Backend-Endpoint / Langdock** aufruft. Den API-Key NIE im
-Frontend ablegen – immer über einen kleinen Server-Proxy. Im Code steht ein
-kommentiertes Beispiel an der Funktion.
+Das passiert automatisch: Bei jedem Push auf `main` baut der Workflow
+`.github/workflows/deploy.yml` die App und veröffentlicht sie.
+
+Einmalig im Repo aktivieren: **Settings → Pages → Build and deployment →
+Source: „GitHub Actions“**. Danach erscheint die Seite unter
+`https://dgruenewald97-arch.github.io/KI-Schulung/`.
+
+Hinweis: Der Pfad `/KI-Schulung/` ist in `vite.config.js` als `base`
+hinterlegt. Heißt das Repo mal anders, dort anpassen.
 
 ## Inhaltlich erweitern
 
