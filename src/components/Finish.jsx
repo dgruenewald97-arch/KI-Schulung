@@ -1,38 +1,44 @@
 import React, { useState } from "react";
-import { Trophy, RotateCcw, Copy, Check, ClipboardList } from "lucide-react";
+import { Check, ClipboardList, Copy, RotateCcw, Trophy } from "lucide-react";
 import { BRAND } from "../data/brand.js";
 
 const CHEAT =
-`PROMPT-SPICKZETTEL · ${BRAND.name}
+`KOPIER-VORLAGE · ${BRAND.name}
 
-5 Bausteine eines guten Prompts:
-• Ziel – was soll konkret rauskommen? (Verb + Ergebnis)
-• Kontext – Rolle, Zielgruppe, Situation
-• Material – Rohtext, Stichpunkte, Beispiel, Daten
-• Format – Länge, Struktur, Form
-• Ton & Richtlinien – Tonfall + klare Grenzen ("keine Fakten erfinden")
+Nutze diese Struktur in Langdock und ersetze die Platzhalter:
 
-Marken-Ton: ${BRAND.voice}.
+# Ziel
+[Was soll am Ende konkret entstehen? Verb + Ergebnis, z.B. "Erstelle eine Management-Zusammenfassung"]
 
-Techniken bei Bedarf:
-• Beispiel vorgeben (Few-Shot)   • Rolle zuweisen
-• Schritt für Schritt denken     • Format erzwingen
+# Kontext
+[Firma, Kunde, Projekt, Zielgruppe, Kanal, Situation]
+[Unser Stil: ${BRAND.voice}]
 
-Methode je Situation:
-• Klar → Basis-Briefing          • Unklar → Reverse Prompting
-• Ideen → Brainstorming          • Prüfen → Kritischer Stakeholder
+# Material
+[Rohtext, Transkript, Stichpunkte, Kundenbriefing, Beispiel, Daten]
 
-Vor dem Verwenden prüfen:
-Fakten? Quellen? Ton? Annahmen sichtbar? Kundentauglich? Würde ich das freigeben?
+# Ausgabeformat
+[Tabelle, Mail, Agenda, 5 Bulletpoints, Kurzfazit, Varianten, Prüfliste]
 
-Im Job: in Langdock arbeiten – keine vertraulichen Daten in private Tools.`;
+# Ton & Richtlinien
+[Kundenton, Do's & Don'ts, Länge, Sprache, Freigabehinweise]
+
+# Prüfregeln
+- Keine Fakten erfinden.
+- Annahmen sichtbar markieren.
+- Datenschutz beachten: keine vertraulichen Daten in private KI-Tools.
+- Ergebnis auf Fakten, Ton, Marke, Zielgruppe und Kundentauglichkeit prüfen.
+
+Wenn wichtige Informationen fehlen:
+Stelle mir zuerst maximal 5 Rückfragen und warte auf meine Antwort.`;
 
 const STARTERS = [
-  "Einen bestehenden Text klarer, freundlicher oder kürzer machen",
-  "Aus Stichpunkten eine Agenda, Mail oder Zusammenfassung bauen",
-  "Mit KI Ideen brainstormen, clustern und die besten Optionen bewerten",
-  "Einen Entwurf aus Kund:innen-, PM-, Kreations- und Compliance-Sicht prüfen",
-  "Mit Reverse Prompting aus einer groben Idee einen guten Prompt bauen",
+  "Potenzial-Check: Welche 3 Aufgaben in meinem Alltag eignen sich diese Woche für einen KI-Test?",
+  "Vorher/Nachher: Baue aus einem schwachen Prompt eine starke Version mit Ziel, Kontext, Material und Prüfregeln.",
+  "Prompt-Architekt: Stelle mir Rückfragen und formuliere danach einen fertigen Copy-Paste-Prompt.",
+  "Brainstorming: Entwickle 12 Ideen, clustere sie und bewerte die besten nach Wirkung, Aufwand und Risiko.",
+  "Zusammenfassung: Verdichte mein Material in Kurzfazit, wichtigste Punkte, offene Fragen und nächste Schritte.",
+  "Stakeholder: Prüfe meinen Entwurf aus Kunden-, Zielgruppen-, Team-, Kanal- und Risiko-Sicht.",
 ];
 
 export default function Finish({ restart }) {
@@ -49,7 +55,7 @@ export default function Finish({ restart }) {
       await navigator.clipboard.writeText(CHEAT);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
-    } catch { /* Clipboard nicht verfügbar – Text steht sichtbar da */ }
+    } catch { /* Clipboard nicht verfügbar - Text steht sichtbar da */ }
   };
 
   return (
@@ -57,27 +63,28 @@ export default function Finish({ restart }) {
       <div className="medal"><Trophy size={36} color="#06120b" /></div>
       <h2 style={{ fontSize: 34 }}>Geschafft.</h2>
       <p className="lede" style={{ margin: "14px auto 0" }}>
-        Du hast jetzt vier praktische Muster: sauber briefen, mit Reverse Prompting klären,
-        Ideen brainstormen und Ergebnisse aus mehreren Perspektiven prüfen.
+        Du hast jetzt die Grundlagen aus Modul 1 und sechs Arbeitsmuster:
+        Potenziale finden, Prompts verbessern, Aufgaben klären, brainstormen,
+        zusammenfassen und kritisch prüfen.
       </p>
 
       <div className="card" style={{ marginTop: 30, textAlign: "left" }}>
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
-          <h3 style={{ fontSize: 17, margin: 0, display: "flex", alignItems: "center", gap: 8 }}><ClipboardList size={18} /> Prompt-Spickzettel</h3>
+          <h3 style={{ fontSize: 17, margin: 0, display: "flex", alignItems: "center", gap: 8 }}><ClipboardList size={18} /> Copy-Paste-Spickzettel</h3>
           <button className="btn btn-ghost" onClick={copyCheat}>
-            {copied ? <><Check size={16} /> Kopiert!</> : <><Copy size={16} /> Spickzettel kopieren</>}
+            {copied ? <><Check size={16} /> Kopiert!</> : <><Copy size={16} /> Vorlage kopieren</>}
           </button>
         </div>
         <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "8px 0 14px" }}>
-          Zum Mitnehmen: alles Wichtige auf einen Blick. Kopier ihn dir z.B. in deine Notizen oder pinn ihn ans Board.
+          Das ist die eine Vorlage, die immer funktioniert: Ziel, Kontext, Material, Format, Richtlinien und Prüfung.
         </p>
         <div className="assembled">{CHEAT}</div>
       </div>
 
       <div className="card" style={{ marginTop: 18, textAlign: "left" }}>
-        <h3 style={{ fontSize: 17, marginBottom: 4 }}>Deine Use Cases für den Start</h3>
+        <h3 style={{ fontSize: 17, marginBottom: 4 }}>Deine ersten Use Cases</h3>
         <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "0 0 14px" }}>
-          Wähle keine riesigen Projekte. Starte mit Aufgaben, die regelmäßig vorkommen und bei denen du das Ergebnis gut prüfen kannst.
+          Wähle kleine Aufgaben, die regelmäßig vorkommen und bei denen du das Ergebnis fachlich prüfen kannst.
         </p>
         <div className="starter-list">
           {STARTERS.map((starter) => (
@@ -85,15 +92,15 @@ export default function Finish({ restart }) {
           ))}
         </div>
         <textarea className="ta" rows={5} value={cases} onChange={(e) => setCases(e.target.value)} placeholder={"Use Case einfügen oder selbst schreiben ..."} />
-        <p style={{ color: "var(--faint)", fontSize: 12, margin: "10px 0 0" }}>Tipp: Gute Use Cases sind klein genug zum Ausprobieren und wichtig genug, dass Zeitersparnis spürbar wird.</p>
+        <p style={{ color: "var(--faint)", fontSize: 12, margin: "10px 0 0" }}>Tipp: Lieber einen echten kleinen Prozess verbessern als ein riesiges KI-Projekt planen.</p>
       </div>
 
       <div className="card" style={{ marginTop: 18, textAlign: "left" }}>
-        <h3 style={{ fontSize: 17, marginBottom: 8 }}>Die vier Teamregeln</h3>
-        <div className="rule"><span className="n">1</span> <span>Bei klaren Aufgaben: Ziel, Kontext, Material, Format und Grenzen angeben.</span></div>
-        <div className="rule"><span className="n">2</span> <span>Bei unklaren Aufgaben: Reverse Prompting nutzen und erst Rückfragen beantworten.</span></div>
-        <div className="rule"><span className="n">3</span> <span>Bei wichtigen Ergebnissen: kritische Stakeholder-Perspektiven einholen.</span></div>
-        <div className="rule"><span className="n">4</span> <span>Im Job Langdock nutzen und Outputs prüfen: Fakten, Quellen, Zahlen, Bias, Tonalität und Kundentauglichkeit.</span></div>
+        <h3 style={{ fontSize: 17, marginBottom: 8 }}>Teamregeln für den Alltag</h3>
+        <div className="rule"><span className="n">1</span> <span>KI ist kein Wissensspeicher: Outputs kritisch prüfen, besonders Zahlen, Quellen und Kundendetails.</span></div>
+        <div className="rule"><span className="n">2</span> <span>Gute Prompts brauchen Ziel, Kontext, Material, Format und Prüfregeln.</span></div>
+        <div className="rule"><span className="n">3</span> <span>Bei unklaren Aufgaben erst Rückfragen stellen lassen, dann den Prompt bauen.</span></div>
+        <div className="rule"><span className="n">4</span> <span>Für echte Arbeit Langdock nutzen und keine sensiblen Daten in private Tools kopieren.</span></div>
       </div>
 
       <div className="card quality-card" style={{ marginTop: 18, textAlign: "left" }}>
@@ -103,16 +110,15 @@ export default function Finish({ restart }) {
           <span>Quellen geprüft?</span>
           <span>Ton passend?</span>
           <span>Annahmen sichtbar?</span>
-          <span>Keine erfundenen Details?</span>
+          <span>Datenschutz okay?</span>
           <span>Würde ich das so freigeben?</span>
         </div>
       </div>
 
       <div className="notice" style={{ marginTop: 18, textAlign: "left" }}>
         <span>
-          Wenn du nicht weißt, wie du eine Aufgabe an KI geben sollst: Frag die KI selbst.
-          Bitte sie, dir beim Prompt zu helfen, Rückfragen zu stellen, Annahmen offenzulegen und Quellen oder Gegenargumente mitzudenken.
-          Danach prüfst du kritisch, was davon für deinen Kontext wirklich passt.
+          Merksatz aus Modul 1: Prompt Engineering verbessert die Anfrage.
+          Context Engineering verbessert die Wissensbasis. Für gute Ergebnisse brauchst du meistens beides.
         </span>
       </div>
 

@@ -16,7 +16,7 @@ const STEPS = [
   { id: "compass", title: "Kompass" },
   { id: "role", title: "Rolle" },
   { id: "duel", title: "Vergleich" },
-  { id: "methods", title: "Methoden" },
+  { id: "methods", title: "Promptbibliothek" },
   { id: "workshop", title: "Werkstatt" },
   { id: "finish", title: "Abschluss" },
 ];

@@ -5,39 +5,46 @@ import { BRAND, buildPromptContext } from "../data/brand.js";
 
 const USE_CASES = [
   {
-    id: "rewrite",
-    label: "Text verbessern",
-    ziel: "Formuliere einen vorhandenen Kundentext klarer, markennäher und handlungsorientierter um.",
-    format: "Betreff/Headline + 2 kurze Absätze + klare Handlungsaufforderung.",
-    ton: "Passend zur Kundenmarke, nahbar und konkret. Keine Floskeln, keine neuen Fakten erfinden.",
+    id: "potential",
+    label: "Potenzial-Check",
+    ziel: "Analysiere meinen Arbeitsalltag und finde 3 konkrete KI-Use-Cases, die klein, wiederkehrend und gut prüfbar sind.",
+    format: "Tabelle: Aufgabe | KI-Potenzial | Warum geeignet | Risiko | erster Test. Danach Top-3-Empfehlung.",
+    ton: "Praktisch, kritisch und konkret. Datenschutz- oder Freigaberisiken sichtbar markieren.",
   },
   {
-    id: "reverse",
-    label: "Reverse Prompting",
-    ziel: "Hilf mir, aus einer groben Kundenaufgabe einen präzisen Prompt zu bauen. Stelle zuerst maximal 5 Rückfragen zum Kunden, Ziel und Kanal.",
-    format: "Erst Rückfragen, danach fertiger Prompt, danach kurze Prüfliste für Kundentauglichkeit.",
-    ton: "Strukturiert, fragend, kritisch. Fehlende Kundendetails sichtbar markieren.",
+    id: "before-after",
+    label: "Vorher/Nachher",
+    ziel: "Zeige mir den Unterschied zwischen einem schwachen und einem starken Prompt für diese Aufgabe.",
+    format: "1 schwacher Prompt + kurze Kritik, 1 starker Prompt mit Ziel/Kontext/Material/Format/Prüfung, erwartete Ergebnisverbesserung.",
+    ton: "Erklärend, direkt und praxisnah. Keine neuen Fakten erfinden.",
+  },
+  {
+    id: "architect",
+    label: "Prompt-Architekt",
+    ziel: "Hilf mir, aus einer groben Kundenaufgabe einen präzisen Copy-Paste-Prompt zu bauen. Stelle zuerst maximal 5 Rückfragen.",
+    format: "Erst Rückfragen, danach fertiger Prompt, danach kurze Prüfliste für Fakten, Tonalität, Datenschutz und Kundentauglichkeit.",
+    ton: "Strukturiert, fragend und kritisch. Fehlende Kundendetails sichtbar markieren.",
   },
   {
     id: "brainstorming",
     label: "Brainstorming",
     ziel: "Entwickle mehrere Ideen oder Ansätze für einen konkreten Kunden und hilf mir, die besten Optionen auszuwählen.",
-    format: "Erst kurze Rückfragen, dann 10 Ideen, danach Cluster und Top-3-Bewertung nach Wirkung, Aufwand und Risiko.",
+    format: "Erst kurze Rückfragen, dann 12 Ideen, danach Cluster und Top-5-Bewertung nach Wirkung, Aufwand, Risiko und Markenpassung.",
     ton: "Kreativ, konkret, aber nicht beliebig. Jede Idee muss zum Kunden, zur Zielgruppe und zum Kanal passen.",
   },
   {
+    id: "summary",
+    label: "Zusammenfassung",
+    ziel: "Erstelle aus meinem Material eine professionelle Zusammenfassung für den Arbeitskontext.",
+    format: "Kurzfazit in 3 Sätzen, wichtigste Punkte, offene Fragen, Risiken/Annahmen, nächste Schritte.",
+    ton: "Klar, neutral und verwertbar. Keine Inhalte ergänzen, die nicht im Material stehen.",
+  },
+  {
     id: "stakeholder",
-    label: "Kritische Prüfung",
+    label: "Stakeholder",
     ziel: "Prüfe meinen Kundenentwurf aus mehreren Perspektiven und zeige konkrete Verbesserungen.",
     format: "Tabelle mit Perspektive, Stärke, Risiko/Unklarheit und konkreter Empfehlung.",
     ton: "Kritisch, konstruktiv, konkret. Annahmen und fehlende Kundendetails sichtbar machen.",
-  },
-  {
-    id: "agenda",
-    label: "Meeting strukturieren",
-    ziel: "Erstelle aus losen Stichpunkten eine klare Kundenmeeting-Agenda mit Ziel, Zeitboxen und Verantwortlichkeiten.",
-    format: "Tabelle: Thema, Ziel, Zeit, Verantwortlich, gewünschtes Ergebnis.",
-    ton: "Knapp, praktisch, entscheidungsorientiert. Punkte ohne Ziel als Rückfrage markieren.",
   },
 ];
 
@@ -85,7 +92,12 @@ ${material || "... füge hier Stichpunkte, Beispieltext oder eine grobe Idee ein
 ${format || "... Länge, Struktur, Form"}
 
 # Ton & Richtlinien
-${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
+${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}
+
+# Prüfregeln
+- Keine Fakten erfinden.
+- Annahmen sichtbar markieren.
+- Ergebnis auf Kundentauglichkeit, Tonalität, Datenschutz und Freigabe prüfen.`;
 
   const run = async () => {
     if (!ziel.trim()) { setErr("Gib zumindest ein Ziel ein - das ist das Herz des Arbeitsauftrags."); return; }
@@ -110,11 +122,12 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
       <span className="eyebrow"><Wand2 size={14} /> Geführte Werkstatt</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Baue deinen Prompt mit Leitplanken.</h2>
       <p className="lede">
-        Wähle zuerst einen Use Case. Dann ergänzt du Kunde, Zielgruppe, Kanal und Material - erst dadurch wird der Prompt wirklich brauchbar.
+        Wähle zuerst eine Übung. Dann ergänzt du Kunde, Zielgruppe, Kanal und Material.
+        Erst dadurch wird der Prompt wirklich brauchbar.
       </p>
 
       <div className="card usecase-card" style={{ marginTop: 24 }}>
-        <div className="label" style={{ padding: 0, marginBottom: 12 }}>Use Case wählen</div>
+        <div className="label" style={{ padding: 0, marginBottom: 12 }}>Übung wählen</div>
         <div className="chips">
           {USE_CASES.map((u) => (
             <button key={u.id} className={`chip ${selected === u.id ? "on" : ""}`} onClick={() => applyUseCase(u.id)}>
@@ -132,13 +145,13 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
         <div className="field">
           <label>
             2. Kontext <span className="hint">- Firma, Kunde, Zielgruppe, Situation</span>
-            <button type="button" className="link-add" onClick={resetContext}>+ Kundenbriefing</button>
+            <button type="button" className="link-add" onClick={resetContext}>+ Kontext-Vorlage</button>
           </label>
           <textarea className="ta" rows={8} value={kontext} onChange={(e) => setKontext(e.target.value)} />
         </div>
         <div className="field">
-          <label>3. Material <span className="hint">- Beispieltext, Stichpunkte oder grobe Idee</span></label>
-          <textarea className="ta" rows={3} value={material} onChange={(e) => setMaterial(e.target.value)} placeholder="z.B. Kundenbriefing, Mail, Landingpage-Text, Kampagnenidee, Zielgruppen-Notizen oder ein Entwurf zur Prüfung" />
+          <label>3. Material <span className="hint">- Rohtext, Stichpunkte, Transkript oder Idee</span></label>
+          <textarea className="ta" rows={3} value={material} onChange={(e) => setMaterial(e.target.value)} placeholder="z.B. Kundenbriefing, Mail, Landingpage-Text, Kampagnenidee, Zielgruppen-Notizen oder Entwurf zur Prüfung" />
         </div>
         <div className="field">
           <label>4. Format <span className="hint">- wie soll die Antwort aussehen?</span></label>
@@ -155,7 +168,7 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
 
       <div className="workshop-tip">
         <Sparkles size={16} />
-        <span>Stärker wird der Prompt, wenn du Kundendetails ergänzt: Zielgruppe, Kanal, gewünschte Reaktion, Marken-Ton, No-Gos und echtes Material aus dem Projekt.</span>
+        <span>Grundregel aus Modul 1: KI schätzt wahrscheinlich passende Antworten. Je klarer Kontext, Material und Prüfregeln sind, desto weniger muss sie raten.</span>
       </div>
 
       <div className="label" style={{ padding: "20px 0 8px" }}>Dein fertiger Prompt</div>
