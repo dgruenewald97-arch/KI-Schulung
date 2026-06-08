@@ -1,21 +1,36 @@
 import React from "react";
-import { Lightbulb, Brain, Zap } from "lucide-react";
+import { FileQuestion, MessageSquareText, ShieldCheck, SearchCheck, RefreshCw, UserCheck } from "lucide-react";
 
-/* Station 2 · So tickt KI (3 Lernkarten) */
+/* Station 4 · Sicher und wirksam nutzen */
 export const LEARN = [
   {
-    ico: <Lightbulb size={20} />,
-    h: "Kontext ist König",
-    p: "Die KI kennt weder dich noch eure Kunden. Je mehr relevanten Kontext du gibst (deine Rolle, dein Ziel, das Format), desto präziser die Antwort. „Shit in, shit out.“",
+    ico: <FileQuestion size={20} />,
+    h: "Wähle die richtige Aufgabe",
+    p: "KI lohnt sich besonders für Entwürfe, Zusammenfassungen, Struktur, Ideen und Vorbereitung. Für Freigaben, Strategie und sensible Aussagen bleibt dein Urteil zentral.",
   },
   {
-    ico: <Brain size={20} />,
-    h: "KI schätzt, sie weiß nicht",
-    p: "Beeindruckend, aber fehleranfällig. Du bleibst der „Human in the Loop“: Du prüfst, wählst aus und entscheidest. Die KI liefert den Entwurf, nicht die Wahrheit.",
+    ico: <MessageSquareText size={20} />,
+    h: "Briefing statt Zauberspruch",
+    p: "Ein guter Prompt ist ein guter Arbeitsauftrag: Ziel, relevanter Kontext, gewünschtes Format, Tonalität und klare Grenzen.",
   },
   {
-    ico: <Zap size={20} />,
-    h: "Das richtige Modell",
-    p: "„Schnelle Antwort“ für Alltag, kurze Texte & schnelle Tasks. „Think Deeper / Smart“ für komplexe Analysen und mehrstufige Aufgaben – das Modell denkt dann länger nach.",
+    ico: <ShieldCheck size={20} />,
+    h: "Langdock ist der Arbeitsort",
+    p: "Für echte Aufgaben, Kundendaten und Projektkontext nutzt ihr Langdock. Private KI-Tools oder persönliche Accounts gehören nicht in den Arbeitsprozess.",
+  },
+  {
+    ico: <SearchCheck size={20} />,
+    h: "Output gegenchecken",
+    p: "KI kann plausible Fehler machen. Prüfe Fakten, Quellen, Zahlen, Tonalität, Bias und ob das Ergebnis wirklich zum Kunden oder Projekt passt.",
+  },
+  {
+    ico: <RefreshCw size={20} />,
+    h: "Iterieren ist normal",
+    p: "Die erste Antwort ist oft nur der Start. Gib Feedback, schärfe den Kontext, verlange Alternativen oder bitte um eine bessere Struktur.",
+  },
+  {
+    ico: <UserCheck size={20} />,
+    h: "Du bleibst verantwortlich",
+    p: "KI liefert Vorschläge. Du entscheidest, was genutzt, angepasst, verworfen oder freigegeben wird.",
   },
 ];

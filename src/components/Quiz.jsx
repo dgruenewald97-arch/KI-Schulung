@@ -10,15 +10,15 @@ export default function Quiz() {
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Trophy size={14} /> Station 5 · Mini-Quiz</span>
-      <h2 style={{ fontSize: 30, marginTop: 18 }}>Sitzt es?</h2>
-      <p className="lede">Fünf kurze Fragen, Sofort-Feedback. Kein Druck – reines Hirn-Kitzeln.</p>
+      <span className="eyebrow"><Trophy size={14} /> Station 8 · Mini-Quiz</span>
+      <h2 style={{ fontSize: 30, marginTop: 18 }}>Sitzt das Fundament?</h2>
+      <p className="lede">Fünf kurze Fragen zu sinnvoller Nutzung, Langdock, Prüfung und gutem Briefing.</p>
 
       {answered === QUIZ.length && (
         <div className="card" style={{ marginTop: 22, borderColor: "rgba(62,224,143,.3)", textAlign: "center" }}>
           <div className="disp" style={{ fontSize: 34, color: "var(--acc)" }}>{score} / {QUIZ.length}</div>
           <p style={{ color: "var(--muted)", margin: "6px 0 0", fontSize: 14.5 }}>
-            {score === QUIZ.length ? "Sauber – alles richtig! Du bist bereit." : score >= 3 ? "Stark! Das Fundament sitzt." : "Kein Stress – scroll nochmal durch die Erklärungen."}
+            {score === QUIZ.length ? "Sehr gut - die Grundlagen sitzen." : score >= 3 ? "Gute Basis. Schau dir die Erklärungen bei Bedarf nochmal an." : "Kein Problem - die wichtigsten Regeln stehen direkt im Feedback."}
           </p>
         </div>
       )}

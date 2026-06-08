@@ -1,23 +1,26 @@
 /* ------------------------------------------------------------------
-   WERKSTATT-FEEDBACK (Station 4)
+   WERKSTATT-FEEDBACK (Station 7)
    ------------------------------------------------------------------
-   Dieses Tool läuft BEWUSST komplett offline – es ist kein echtes
-   KI-Modell angebunden und soll auch keins bekommen. Station 4 dient
-   dem Üben: den Prompt aus Ziel · Kontext · Format · Ton zusammenbauen
-   und ein Gefühl für gute Struktur entwickeln.
+   Dieses Tool läuft bewusst komplett offline: Es ist kein echtes
+   KI-Modell angebunden. Die Werkstatt übt nur, aus einer Aufgabe einen
+   klaren Prompt mit Ziel, Kontext, Material, Format und Richtlinien zu bauen.
 
-   Den fertigen Prompt nimmt man dann mit ins echte Tool (Langdock).
-   Diese Funktion gibt deshalb nur eine kurze, lokale Rückmeldung zum
-   gebauten Prompt zurück – keine generierte Antwort.
+   Den fertigen Auftrag nimmt man dann mit ins Arbeitstool Langdock.
+   Diese Funktion gibt nur eine lokale Rückmeldung zur Struktur zurück.
 ------------------------------------------------------------------ */
 export async function callClaude(prompt) {
   await new Promise((r) => setTimeout(r, 500));
   const woerter = prompt.trim().split(/\s+/).length;
-  const hatKontext = /#\s*Kontext[\s\S]*\S/.test(prompt) && !/…/.test(prompt.split(/#\s*Kontext/)[1] || "");
+  const hatKontext = /#\s*Kontext[\s\S]*\S/.test(prompt) && !/\.\.\./.test(prompt.split(/#\s*Kontext/)[1] || "");
+  const hatMaterial = /#\s*Material[\s\S]*\S/.test(prompt) && !/\.\.\./.test(prompt.split(/#\s*Material/)[1] || "");
+  const hatRichtlinien = /#\s*Ton & Richtlinien[\s\S]*\S/.test(prompt) && !/\.\.\./.test(prompt.split(/#\s*Ton & Richtlinien/)[1] || "");
+
   return (
-    "✅ Offline-Übung: Dein Prompt ist gebaut – die KI läuft hier bewusst nicht mit.\n\n" +
-    `Länge: ${woerter} Wörter. ${hatKontext ? "Stark – du hast echten Kontext mitgegeben." : "Tipp: Je konkreter dein Kontext, desto besser das Ergebnis."}\n\n` +
-    "So geht's weiter: Kopier dir den Prompt oben raus und probier ihn im echten Tool (Langdock) aus. " +
-    "Dort entsteht die eigentliche Antwort – datenschutzkonform und mit deinen Daten."
+    "Offline-Übung: Dein Prompt ist gebaut - hier läuft bewusst keine echte KI mit.\n\n" +
+    `Länge: ${woerter} Wörter. ${hatKontext ? "Gut: Du hast Kontext mitgegeben." : "Tipp: Ergänze konkreteren Kontext, damit das Ergebnis besser passt."}\n` +
+    `${hatMaterial ? "Gut: Du hast Material oder Stichpunkte ergänzt." : "Tipp: Ergänze Beispielmaterial, Rohtext oder Stichpunkte, damit die KI konkreter arbeiten kann."}\n` +
+    `${hatRichtlinien ? "Gut: Du hast Ton oder Grenzen definiert." : "Tipp: Ergänze Ton, Do's & Don'ts oder Prüfhinweise."}\n\n` +
+    "So geht es weiter: Kopiere den Auftrag und probiere ihn in Langdock aus. " +
+    "Prüfe das Ergebnis danach fachlich, sprachlich und mit Blick auf Kundentauglichkeit."
   );
 }

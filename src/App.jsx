@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { ROLES } from "./data/roles.js";
 import Intro from "./components/Intro.jsx";
+import Basics from "./components/Basics.jsx";
 import Myths from "./components/Myths.jsx";
 import Learn from "./components/Learn.jsx";
+import RoleSelect from "./components/RoleSelect.jsx";
 import Duel from "./components/Duel.jsx";
 import Workshop from "./components/Workshop.jsx";
 import Quiz from "./components/Quiz.jsx";
@@ -24,7 +26,7 @@ export default function App() {
   const [step, setStep] = useState(0);
   const [role, setRole] = useState(ROLES[0]);
 
-  const sections = ["intro", "myths", "learn", "duel", "workshop", "quiz", "finish"];
+  const sections = ["intro", "basics", "myths", "learn", "role", "duel", "workshop", "quiz", "finish"];
   const total = sections.length;
   const cur = sections[step];
   const go = (d) => setStep((s) => Math.min(total - 1, Math.max(0, s + d)));
@@ -40,9 +42,11 @@ export default function App() {
       </div>
 
       <div className="wrap">
-        {cur === "intro" && <Intro role={role} setRole={setRole} next={() => go(1)} />}
+        {cur === "intro" && <Intro next={() => go(1)} />}
+        {cur === "basics" && <Basics />}
         {cur === "myths" && <Myths />}
         {cur === "learn" && <Learn />}
+        {cur === "role" && <RoleSelect role={role} setRole={setRole} />}
         {cur === "duel" && <Duel key={role.id} role={role} />}
         {cur === "workshop" && <Workshop key={role.id} role={role} />}
         {cur === "quiz" && <Quiz />}

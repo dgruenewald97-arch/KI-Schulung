@@ -1,31 +1,59 @@
 import React, { useState } from "react";
 import { Trophy, RotateCcw } from "lucide-react";
 
+const STARTERS = [
+  "Einen bestehenden Text klarer, freundlicher oder kürzer machen",
+  "Aus Stichpunkten eine Agenda, Mail oder Zusammenfassung bauen",
+  "Einen Entwurf aus Kund:innen-, PM-, Kreations- und Compliance-Sicht prüfen",
+  "Mit Reverse Prompting aus einer groben Idee einen guten Prompt bauen",
+];
+
 export default function Finish({ restart }) {
   const [cases, setCases] = useState("");
+  const addStarter = (starter) => {
+    setCases((current) => {
+      if (!current.trim()) return starter;
+      return `${current}${current.endsWith("\n") ? "" : "\n"}${starter}`;
+    });
+  };
+
   return (
     <section className="sec" style={{ paddingTop: 64, textAlign: "center" }}>
       <div className="medal"><Trophy size={36} color="#06120b" /></div>
-      <h2 style={{ fontSize: 34 }}>Geschafft. 🎉</h2>
+      <h2 style={{ fontSize: 34 }}>Geschafft.</h2>
       <p className="lede" style={{ margin: "14px auto 0" }}>
-        Du hast den Dreh raus: Kontext gibt den Ton an, du bleibst der Chef im Kopf, und ein starker Prompt schlägt jedes Tool.
+        Du hast jetzt drei praktische Muster: sauber briefen, mit Reverse Prompting klären
+        und Ergebnisse aus mehreren Perspektiven prüfen.
       </p>
 
       <div className="card" style={{ marginTop: 30, textAlign: "left" }}>
         <h3 style={{ fontSize: 17, marginBottom: 4 }}>Deine 3 Use Cases</h3>
         <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "0 0 14px" }}>
-          Letzter Schritt aus dem Führerschein: notier 3 Aufgaben aus deinem Alltag, bei denen du KI ab jetzt einsetzt.
+          Wähle keine riesigen Projekte. Starte mit Aufgaben, die regelmäßig vorkommen und bei denen du das Ergebnis gut prüfen kannst.
         </p>
-        <textarea className="ta" rows={4} value={cases} onChange={(e) => setCases(e.target.value)} placeholder={"1. …\n2. …\n3. …"} />
-        <p style={{ color: "var(--faint)", fontSize: 12, margin: "10px 0 0" }}>Tipp: kopier dir die Liste raus – sie ist dein Startpunkt für Langdock.</p>
+        <div className="starter-list">
+          {STARTERS.map((starter) => (
+            <button key={starter} className="starter" onClick={() => addStarter(starter)}>{starter}</button>
+          ))}
+        </div>
+        <textarea className="ta" rows={5} value={cases} onChange={(e) => setCases(e.target.value)} placeholder={"Use Case einfügen oder selbst schreiben ..."} />
+        <p style={{ color: "var(--faint)", fontSize: 12, margin: "10px 0 0" }}>Tipp: Gute Use Cases sind klein genug zum Ausprobieren und wichtig genug, dass Zeitersparnis spürbar wird.</p>
       </div>
 
       <div className="card" style={{ marginTop: 18, textAlign: "left" }}>
-        <h3 style={{ fontSize: 17, marginBottom: 8 }}>Die goldenen Regeln</h3>
-        <div className="rule"><span className="n">1</span> <span>Gib Kontext – die KI kennt dich & eure Kunden nicht.</span></div>
-        <div className="rule"><span className="n">2</span> <span>Bau Prompts aus <span className="kbd">Ziel · Kontext · Format · Ton</span>.</span></div>
-        <div className="rule"><span className="n">3</span> <span>Prüf das Ergebnis – die KI schätzt, sie weiß nicht.</span></div>
-        <div className="rule"><span className="n">4</span> <span>Keine vertraulichen Daten in private Tools – im Job: Langdock.</span></div>
+        <h3 style={{ fontSize: 17, marginBottom: 8 }}>Die vier Teamregeln</h3>
+        <div className="rule"><span className="n">1</span> <span>Bei klaren Aufgaben: Ziel, Kontext, Material, Format und Grenzen angeben.</span></div>
+        <div className="rule"><span className="n">2</span> <span>Bei unklaren Aufgaben: Reverse Prompting nutzen und erst Rückfragen beantworten.</span></div>
+        <div className="rule"><span className="n">3</span> <span>Bei wichtigen Ergebnissen: kritische Stakeholder-Perspektiven einholen.</span></div>
+        <div className="rule"><span className="n">4</span> <span>Im Job Langdock nutzen und Outputs prüfen: Fakten, Quellen, Zahlen, Bias, Tonalität und Kundentauglichkeit.</span></div>
+      </div>
+
+      <div className="notice" style={{ marginTop: 18, textAlign: "left" }}>
+        <span>
+          Wenn du nicht weißt, wie du eine Aufgabe an KI geben sollst: Frag die KI selbst.
+          Bitte sie, dir beim Prompt zu helfen, Rückfragen zu stellen, Annahmen offenzulegen und Quellen oder Gegenargumente mitzudenken.
+          Danach prüfst du kritisch, was davon für deinen Kontext wirklich passt.
+        </span>
       </div>
 
       <div style={{ marginTop: 30 }}>

@@ -1,66 +1,129 @@
 import React, { useState } from "react";
-import { Zap, Play, Loader2, Check, X, Shield } from "lucide-react";
-import { SCENARIOS } from "../data/duels.js";
+import { Check, Copy, MessageSquareText, SearchCheck, UsersRound, Zap } from "lucide-react";
+
+const METHODS = [
+  {
+    id: "briefing",
+    label: "Basis-Briefing",
+    ico: <MessageSquareText size={17} />,
+    title: "Wenn du schon weißt, was rauskommen soll",
+    intro: "Das ist der Standard für gute Ergebnisse: Du gibst nicht nur die Aufgabe, sondern auch Kontext, Format, Ton und Grenzen.",
+    prompt: (role) =>
+`Ich möchte eine Aufgabe mit KI bearbeiten.
+
+Ziel:
+[Was soll am Ende entstehen?]
+
+Kontext:
+${role.ctx}
+[Worum geht es, wer ist die Zielgruppe, was ist wichtig?]
+
+Format:
+[z.B. Mail, Agenda, LinkedIn-Post, Tabelle, 5 Bulletpoints]
+
+Ton & Grenzen:
+[z.B. professionell, klar, keine neuen Fakten erfinden, im Job Langdock nutzen]`,
+    takeaway: "Gut für: Texte, Zusammenfassungen, erste Entwürfe, Struktur, Varianten.",
+  },
+  {
+    id: "reverse",
+    label: "Reverse Prompting",
+    ico: <SearchCheck size={17} />,
+    title: "Wenn du noch nicht weißt, wie du prompten sollst",
+    intro: "Lass dir zuerst helfen, den Auftrag zu klären. Die KI stellt Rückfragen und baut daraus den besseren Prompt.",
+    prompt: (role) =>
+`Hilf mir, einen guten Prompt für meine Aufgabe zu bauen.
+
+Meine grobe Aufgabe:
+[Beschreibe in 1-2 Sätzen, was du machen willst.]
+
+Mein Arbeitskontext:
+${role.ctx}
+
+Bitte stelle mir zuerst maximal 5 Rückfragen, die du brauchst, um daraus einen präzisen Prompt zu machen.
+Wenn ich geantwortet habe, formuliere daraus:
+1. einen fertigen Prompt,
+2. eine kurze Erklärung, warum der Prompt so aufgebaut ist,
+3. eine Checkliste, worauf ich das Ergebnis prüfen sollte.`,
+    takeaway: "Gut für: unscharfe Aufgaben, neue Themen, leere Seite, komplexe Briefings.",
+  },
+  {
+    id: "stakeholder",
+    label: "Kritischer Stakeholder",
+    ico: <UsersRound size={17} />,
+    title: "Wenn du ein Ergebnis prüfen willst",
+    intro: "Die KI kann verschiedene Perspektiven simulieren und Schwachstellen sichtbar machen, bevor etwas an Kund:innen oder ins Team geht.",
+    prompt: (role) =>
+`Prüfe den folgenden Entwurf kritisch aus mehreren Perspektiven.
+
+Mein Kontext:
+${role.ctx}
+
+Entwurf:
+[Text, Idee, Agenda, Kampagne oder Entscheidung einfügen]
+
+Bitte bewerte aus diesen Rollen:
+1. Kund:in / Zielgruppe
+2. Projektmanagement
+3. Kreation / Marke
+4. Interne Regeln / Compliance
+5. Geschäftsführung / Budget
+
+Für jede Rolle:
+- Was ist stark?
+- Was ist unklar oder riskant?
+- Welche konkrete Verbesserung empfiehlst du?
+
+Wichtig: Erfinde keine Fakten. Markiere Annahmen klar als Annahmen.`,
+    takeaway: "Gut für: Kundentexte, Kampagnenideen, Präsentationen, Entscheidungen, Freigaben.",
+  },
+];
 
 export default function Duel({ role }) {
-  // Jede Rolle bringt ihre eigenen Szenarien mit. Fallback: "andere".
-  const list = SCENARIOS[role.id] || SCENARIOS.andere;
+  const [active, setActive] = useState(METHODS[0].id);
+  const [copied, setCopied] = useState("");
+  const method = METHODS.find((m) => m.id === active) || METHODS[0];
+  const prompt = method.prompt(role);
 
-  const [taskId, setTaskId] = useState(list[0].id);
-  const [loading, setLoading] = useState(false);
-  const [shown, setShown] = useState(false);
-
-  const d = list.find((s) => s.id === taskId) || list[0];
-
-  const run = async () => {
-    setLoading(true); setShown(false);
-    await new Promise((r) => setTimeout(r, 650));
-    setShown(true); setLoading(false);
+  const copy = async () => {
+    try {
+      await navigator.clipboard.writeText(prompt);
+      setCopied(method.id);
+      setTimeout(() => setCopied(""), 1800);
+    } catch {
+      setCopied("");
+    }
   };
-
-  const pick = (id) => { setTaskId(id); setShown(false); };
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Zap size={14} /> Station 3 · Das Prompt-Duell</span>
-      <h2 style={{ fontSize: 30, marginTop: 18 }}>Gleiche Aufgabe. Anderer Prompt.</h2>
+      <span className="eyebrow"><Zap size={14} /> Station 6 · Richtig prompten</span>
+      <h2 style={{ fontSize: 30, marginTop: 18 }}>Drei Methoden, die wirklich helfen.</h2>
       <p className="lede">
-        Hier siehst du Aufgaben aus dem Alltag von <b style={{ color: "var(--acc)" }}>{role.label}</b>.
-        Wähl eine, schau dir <b>beide</b> Prompts an – und sieh den Unterschied im Ergebnis schwarz auf grün.
+        Prompting ist kein Zauberspruch. Du entscheidest erst, welche Art Hilfe du brauchst:
+        Briefing schreiben, Aufgabe klären oder Ergebnis kritisch prüfen.
       </p>
 
-      <div className="chips" style={{ marginTop: 22 }}>
-        {list.map((s) => (
-          <button key={s.id} className={`chip ${taskId === s.id ? "on" : ""}`} onClick={() => pick(s.id)}>{s.label}</button>
+      <div className="method-tabs" style={{ marginTop: 24 }}>
+        {METHODS.map((m) => (
+          <button key={m.id} className={`method-tab ${active === m.id ? "on" : ""}`} onClick={() => setActive(m.id)}>
+            {m.ico}<span>{m.label}</span>
+          </button>
         ))}
       </div>
 
-      <p style={{ color: "var(--muted)", fontSize: 13.5, marginTop: 16, whiteSpace: "pre-wrap" }}>{d.scenario}</p>
-
-      <div style={{ margin: "18px 0 22px" }}>
-        <button className="btn btn-primary" onClick={run} disabled={loading}>
-          {loading ? <><Loader2 size={17} className="spin" /> Vergleich läuft …</> : <><Play size={17} /> Ergebnisse zeigen</>}
-        </button>
-      </div>
-
-      <div className="duel">
-        <div className="col bad">
-          <div className="col-h"><X size={16} /> Der faule Prompt</div>
-          <div className="prompt-box">{d.bad}</div>
-          <div className="label">Ergebnis</div>
-          <div className="out">{shown ? d.badOut : <span className="out-empty">{loading ? "…" : "Noch nichts – oben auf „Ergebnisse zeigen“ tippen."}</span>}</div>
+      <div className="card method-card" style={{ marginTop: 18 }}>
+        <div>
+          <h3>{method.title}</h3>
+          <p>{method.intro}</p>
         </div>
-        <div className="col good">
-          <div className="col-h"><Check size={16} /> Der starke Prompt</div>
-          <div className="prompt-box">{d.good(role.ctx)}</div>
-          <div className="label">Ergebnis</div>
-          <div className="out">{shown ? d.goodOut : <span className="out-empty">{loading ? "…" : "Hier landet das deutlich bessere Ergebnis."}</span>}</div>
+        <div className="prompt-template">{prompt}</div>
+        <div className="method-footer">
+          <span><Check size={15} /> {method.takeaway}</span>
+          <button className="btn btn-ghost" onClick={copy}>
+            {copied === method.id ? <><Check size={16} /> Kopiert</> : <><Copy size={16} /> Vorlage kopieren</>}
+          </button>
         </div>
-      </div>
-
-      <div className="notice" style={{ marginTop: 18 }}>
-        <Shield size={16} />
-        <span>Merksatz: Der Unterschied kommt nicht vom Tool, sondern von <b>Ziel · Kontext · Format · Ton</b>. Die baust du gleich selbst.</span>
       </div>
     </section>
   );

@@ -1,37 +1,33 @@
 import React from "react";
 import { Sparkles, ArrowRight } from "lucide-react";
-import { ROLES } from "../data/roles.js";
 
-export default function Intro({ role, setRole, next }) {
+export default function Intro({ next }) {
   return (
     <section className="sec" style={{ paddingTop: 70 }}>
       <span className="eyebrow"><Sparkles size={14} /> Mobility Minds · Modul 1</span>
-      <h1 style={{ fontSize: 44, marginTop: 22 }}>Vom Zuschauer<br />zum KI-Anwender.</h1>
+      <h1 style={{ fontSize: 44, marginTop: 22 }}>KI sicher und sinnvoll im Agenturalltag nutzen.</h1>
       <p className="lede">
-        Ein kleiner Mitmach-Guide aus dem KI-Führerschein – in ~15 Minuten, in deinem Tempo.
-        Kein Vortrag: du baust selbst Prompts und siehst <b style={{ color: "var(--acc)" }}>den Unterschied sofort</b>. Versprochen schmerzfrei.
+        Ein kurzer Mitmach-Guide für alle im Team: Was KI gut kann, wo Vorsicht nötig ist
+        und wie aus einer Aufgabe ein guter Arbeitsauftrag wird.
       </p>
 
-      <div className="card" style={{ marginTop: 30 }}>
-        <label style={{ fontSize: 14, fontWeight: 600, display: "block", marginBottom: 4 }}>Womit arbeitest du am meisten?</label>
-        <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "0 0 14px" }}>
-          Danach richten sich die Beispiele in den Stationen 3 & 4 – passend zu deinem Alltag, nicht zu irgendeiner Rolle.
+      <div className="card intro-card" style={{ marginTop: 30 }}>
+        <h2>Worum es hier geht</h2>
+        <p>
+          KI-Kompetenz heißt nicht, jedes Tool zu kennen. Es heißt, KI informiert einzusetzen:
+          Chancen erkennen, Grenzen verstehen, Langdock nutzen und Ergebnisse prüfen.
         </p>
-        <div className="chips">
-          {ROLES.map((r) => (
-            <button key={r.id} className={`chip ${role.id === r.id ? "on" : ""}`} onClick={() => setRole(r)}>
-              {r.label}
-            </button>
-          ))}
-        </div>
+        <p>
+          Danach übst du an Beispielen aus deinem Arbeitsbereich, damit das Ganze nicht abstrakt bleibt.
+        </p>
       </div>
 
       <div className="hero-badge">
-        <span>6 Stationen</span><span className="dotsep" /><span>Selbst ausprobieren</span><span className="dotsep" /><span>1 Mini-Quiz</span>
+        <span>15-20 Minuten</span><span className="dotsep" /><span>Grundlagen zuerst</span><span className="dotsep" /><span>Praxis danach</span>
       </div>
 
       <div style={{ marginTop: 34 }}>
-        <button className="btn btn-primary" onClick={next}>Los geht's <ArrowRight size={18} /></button>
+        <button className="btn btn-primary" onClick={next}>Starten <ArrowRight size={18} /></button>
       </div>
     </section>
   );

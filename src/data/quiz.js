@@ -1,53 +1,53 @@
-/* Station 5 · Mini-Quiz */
+/* Station 8 · Mini-Quiz */
 export const QUIZ = [
   {
-    q: "Was macht ein Sprachmodell technisch, wenn es dir antwortet?",
+    q: "Wann ist Reverse Prompting besonders hilfreich?",
     opts: [
-      "Es schlägt im Internet die Wahrheit nach",
-      "Es berechnet das wahrscheinlichste nächste Wort",
-      "Es kopiert eine gespeicherte Antwort",
-    ],
-    correct: 1,
-    ex: "Genau deshalb kann es überzeugend klingen und trotzdem falsch liegen. Wichtiges immer gegenchecken.",
-  },
-  {
-    q: "Was ist der größte Hebel für ein gutes Ergebnis?",
-    opts: [
-      "Das teuerste KI-Tool",
-      "Ein klarer Prompt mit Kontext, Ziel & Format",
-      "Möglichst viele Tools parallel",
-    ],
-    correct: 1,
-    ex: "Gutes Prompting schlägt Tool-Vielfalt. Die KI kennt dich nicht – der Kontext muss von dir kommen.",
-  },
-  {
-    q: "Welche Daten gehören NICHT in ein nicht-freigegebenes KI-Tool?",
-    opts: [
-      "Vertrauliche Kunden- & Personendaten",
-      "Eine erfundene Beispiel-Aufgabe",
-      "Eine öffentliche Pressemitteilung",
+      "Wenn die Aufgabe noch unscharf ist und die KI erst Rückfragen stellen soll",
+      "Wenn man gar keinen Kontext geben möchte",
+      "Wenn ein Ergebnis ohne Prüfung direkt veröffentlicht werden soll",
     ],
     correct: 0,
-    ex: "Im Job nutzen wir Langdock – lizenziert & datenschutzkonform. Im Zweifel IT/Datenschutz fragen.",
+    ex: "Reverse Prompting hilft bei der leeren Seite: Die KI klärt mit dir Ziel, Kontext, Format und Grenzen, bevor sie den eigentlichen Prompt formuliert.",
   },
   {
-    q: "Wann lohnt sich ein „Think Deeper / Smart“-Modell?",
+    q: "Was gehört in ein gutes Basis-Briefing an KI?",
     opts: [
-      "Bei einer schnellen, simplen Frage",
-      "Bei komplexen, mehrstufigen Analysen",
-      "Nie, ist nur teurer",
+      "Nur ein einzelnes Stichwort",
+      "Ziel, Kontext, Material, Format, Ton und wichtige Grenzen",
+      "Möglichst viele Fachbegriffe ohne Erklärung",
     ],
     correct: 1,
-    ex: "Für Alltagstexte reicht das schnelle Modell. Komplexe Denk-Aufgaben profitieren vom längeren Nachdenken.",
+    ex: "KI kennt deine Situation nicht automatisch. Je klarer das Briefing, desto brauchbarer der erste Entwurf.",
   },
   {
-    q: "Was tust du mit einem KI-Output bei einer wichtigen Entscheidung?",
+    q: "Wofür nutzt du die KI als kritischen Stakeholder?",
     opts: [
-      "Direkt übernehmen, spart Zeit",
-      "Kritisch prüfen und gegenchecken",
-      "Sofort an den Kunden schicken",
+      "Um einen Entwurf aus verschiedenen Perspektiven auf Risiken und Verbesserungen zu prüfen",
+      "Um interne Regeln zu umgehen",
+      "Um Kund:innen automatisch final zu ersetzen",
+    ],
+    correct: 0,
+    ex: "Perspektiven wie Kund:in, PM, Kreation, Compliance oder Geschäftsführung machen blinde Flecken sichtbar.",
+  },
+  {
+    q: "Wo bearbeitest du echte Aufgaben mit Kundendaten oder Projektkontext?",
+    opts: [
+      "In einem privaten ChatGPT-/KI-Account",
+      "In irgendeinem frei gewählten KI-Tool",
+      "In Langdock",
+    ],
+    correct: 2,
+    ex: "Langdock ist euer Arbeitstool für KI-Aufgaben im Job. Private oder frei gewählte KI-Tools nutzt ihr dafür nicht.",
+  },
+  {
+    q: "Was machst du mit einem KI-Output, bevor er an Kund:innen oder ins Team geht?",
+    opts: [
+      "Direkt übernehmen, wenn er professionell klingt",
+      "Fakten, Ton, Quellen, Zahlen und Passung prüfen",
+      "Nur die Rechtschreibung ansehen",
     ],
     correct: 1,
-    ex: "Du bleibst der „Human in the Loop“. Die KI liefert den Entwurf – die Verantwortung bleibt bei dir.",
+    ex: "Überzeugend formuliert heißt nicht automatisch korrekt. Prüfung und Freigabe bleiben menschliche Verantwortung.",
   },
 ];
