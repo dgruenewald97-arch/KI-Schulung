@@ -6,8 +6,12 @@
    klaren Prompt mit Ziel, Kontext, Material, Format und Richtlinien zu bauen.
 
    Den fertigen Auftrag nimmt man dann mit ins Arbeitstool Langdock.
-   Diese Funktion gibt nur eine lokale, strukturelle Rückmeldung zurück –
-   sie prüft jeden Baustein EINZELN (keine generierte Antwort).
+   Diese Funktion gibt nur eine lokale Rückmeldung zurück (keine generierte
+   Antwort). Sie prüft jeden Baustein EINZELN auf zwei Ebenen:
+   - Vollständigkeit: ist der Baustein überhaupt ausgefüllt?
+   - Schärfe (Heuristik): wirkt er konkret genug? (z.B. vages Ziel,
+     knapper Kontext, Format ohne messbare Vorgabe, Ton ohne Grenze)
+   Bewusst KEINE echte inhaltliche Bewertung – die passiert in Langdock.
 ------------------------------------------------------------------ */
 
 /* Zerlegt den zusammengebauten Prompt in seine "# Überschrift"-Abschnitte.
@@ -51,22 +55,43 @@ export async function callClaude(prompt) {
     isFilled(b.body) ? `✓ ${b.name}: vorhanden` : `– ${b.name}: fehlt noch. ${b.tipp}`
   );
 
-  // Leichte Qualitäts-Hinweise (rein strukturell, keine echte Bewertung).
+  // Schärfe-Heuristik: prüft ausgefüllte Bausteine auf typische Schwächen.
+  // Deterministisch und bewusst konservativ (lieber kein Hinweis als ein
+  // falscher) – keine echte inhaltliche Bewertung.
+  const ziel = s["ziel"] || "";
+  const kontext = s["kontext"] || "";
+  const format = s["format"] || "";
+  const ton = s["ton & richtlinien"] || "";
+  const woerterIn = (t) => t.split(/\s+/).filter(Boolean).length;
+
   const extras = [];
-  if (isFilled(s["ziel"]) && s["ziel"].split(/\s+/).filter(Boolean).length < 4) {
-    extras.push("Dein Ziel ist sehr knapp – je konkreter, desto brauchbarer das Ergebnis.");
+  if (isFilled(ziel)) {
+    const vage = ziel.match(/\b(irgendwas|etwas|so|halt|mal eben|schön|schöner|besser)\b/i);
+    if (woerterIn(ziel) < 4) {
+      extras.push("Ziel ist sehr knapp – nenne Verb + konkretes Ergebnis (z.B. „erstelle eine 5-Punkte-Agenda“).");
+    } else if (vage) {
+      extras.push(`Ziel wirkt unscharf („${vage[0]}“) – sag genauer, was am Ende rauskommen soll.`);
+    }
   }
-  if (isFilled(s["format"]) && !/\d/.test(s["format"]) && !/(wort|wörter|satz|sätze|bullet|absatz|tabelle|zeile|punkt)/i.test(s["format"])) {
-    extras.push("Beim Format hilft eine messbare Vorgabe (Länge, Anzahl, Struktur).");
+  if (isFilled(kontext) && woerterIn(kontext) < 8) {
+    extras.push("Kontext ist knapp – ergänze Zielgruppe, Kunde/Projekt und worum es konkret geht.");
+  }
+  if (isFilled(format) && !/\d/.test(format) && !/(wort|wörter|satz|sätze|bullet|absatz|tabelle|zeile|punkt|liste|spalte)/i.test(format)) {
+    extras.push("Format hat keine messbare Vorgabe – nenne Länge, Anzahl oder Struktur.");
+  }
+  if (isFilled(ton) && !/(kein|nicht|vermeide|grenz|maximal|\bnur\b|annahme|markier|kennzeichn)/i.test(ton)) {
+    extras.push("Ton & Richtlinien nennen noch keine Grenze – ergänze ein klares Don't (z.B. „keine Fakten erfinden“).");
   }
 
-  const kopf = `Offline-Check (keine echte KI): ${gefuellt.length} von 5 Bausteinen ausgefüllt · ${woerter} Wörter.`;
+  const kopf = `Offline-Check (keine echte KI): ${gefuellt.length} von 5 Bausteinen ausgefüllt · ${woerter} Wörter Inhalt.`;
 
-  const fazit = fehlend.length === 0
-    ? "Stark – alle Bausteine sind drin. Das ist ein sauberer Arbeitsauftrag."
-    : fehlend.some((b) => b.key === "ziel")
-      ? "Ohne Ziel fehlt das Herzstück – ergänze als Erstes, was rauskommen soll."
-      : "Solide Basis. Die fehlenden Bausteine machen das Ergebnis deutlich präziser.";
+  const fazit = fehlend.length > 0
+    ? (fehlend.some((b) => b.key === "ziel")
+        ? "Ohne Ziel fehlt das Herzstück – ergänze als Erstes, was rauskommen soll."
+        : "Solide Basis. Die fehlenden Bausteine machen das Ergebnis deutlich präziser.")
+    : extras.length > 0
+      ? "Vollständig – aber an den markierten Stellen kannst du noch schärfer werden."
+      : "Stark – vollständig und konkret. Das ist ein sauberer Arbeitsauftrag.";
 
   return [
     kopf,
