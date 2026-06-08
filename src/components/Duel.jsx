@@ -122,10 +122,10 @@ export default function Duel({ role }) {
   return (
     <section className="sec">
       <span className="eyebrow"><Zap size={14} /> Station 6 · Richtig prompten</span>
-      <h2 style={{ fontSize: 30, marginTop: 18 }}>Drei Methoden, die wirklich helfen.</h2>
+      <h2 style={{ fontSize: 30, marginTop: 18 }}>Vier Methoden, die wirklich helfen.</h2>
       <p className="lede">
         Prompting ist kein Zauberspruch. Du entscheidest erst, welche Art Hilfe du brauchst:
-        Briefing schreiben, Aufgabe klären oder Ergebnis kritisch prüfen.
+        Briefing schreiben, Aufgabe klären, Ideen entwickeln oder Ergebnis kritisch prüfen.
       </p>
 
       <div className="method-tabs" style={{ marginTop: 24 }}>
