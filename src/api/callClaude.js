@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   WERKSTATT-FEEDBACK (Station 9)
+   WERKSTATT-FEEDBACK
    ------------------------------------------------------------------
    Dieses Tool läuft bewusst komplett offline: Es ist kein echtes
    KI-Modell angebunden. Die Werkstatt übt nur, aus einer Aufgabe einen
@@ -74,7 +74,10 @@ export async function callClaude(prompt) {
     }
   }
   if (isFilled(kontext) && woerterIn(kontext) < 8) {
-    extras.push("Kontext ist knapp – ergänze Zielgruppe, Kunde/Projekt und worum es konkret geht.");
+    extras.push("Kontext ist knapp - ergänze Zielgruppe, Kunde/Projekt und worum es konkret geht.");
+  }
+  if (isFilled(kontext) && /\[[^\]]+\]/.test(kontext)) {
+    extras.push("Im Kontext stehen noch Platzhalter - ersetze sie durch Kunde, Projekt, Zielgruppe, Kundenziel und Tonalität.");
   }
   if (isFilled(format) && !/\d/.test(format) && !/(wort|wörter|satz|sätze|bullet|absatz|tabelle|zeile|punkt|liste|spalte)/i.test(format)) {
     extras.push("Format hat keine messbare Vorgabe – nenne Länge, Anzahl oder Struktur.");

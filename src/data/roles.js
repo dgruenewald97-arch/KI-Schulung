@@ -3,10 +3,9 @@
    ------------------------------------------------------------
    Jede Rolle bringt mit:
    - label : Anzeigename im Rollen-Picker
-   - ctx   : Kontext-Satz, der als Startwert in die Werkstatt
-             (Station 9), in die Methoden-Vorlagen (Station 8) und
-             sichtbar in die "starken" Duell-Prompts (Station 7)
-             einfliesst.
+   - ctx   : Kontext-Satz, der als Startwert in die Werkstatt,
+             in die Methoden-Vorlagen und sichtbar in die "starken"
+             Duell-Prompts einfliesst.
    Die passenden Duell-Szenarien je Rolle stehen in duels.js.
    ============================================================ */
 export const ROLES = [

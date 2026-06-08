@@ -1,20 +1,36 @@
 /* ============================================================
-   MARKEN-PROFIL · Mobility Minds
+   MARKEN- UND KUNDENKONTEXT · Mobility Minds
    ------------------------------------------------------------
-   Bewusst NEUTRAL & SICHER gehalten – hier gehören KEINE
-   vertraulichen Infos rein (keine Kundennamen, Zahlen, internen
-   Projekte). Es ist nur die öffentliche Selbstbeschreibung +
-   Tonfall, damit Beispiele & Vorlagen nach Mobility Minds klingen.
-
-   Anpassen jederzeit erlaubt – wird an mehreren Stellen genutzt
-   (Intro, Werkstatt-Hinweis, Spickzettel).
+   Hier stehen nur wiederverwendbare, nicht-vertrauliche Leitplanken.
+   Konkrete Kundennamen, Zahlen oder sensible Projektdetails gehören erst
+   in Langdock in den finalen Prompt.
    ============================================================ */
 export const BRAND = {
   name: "Mobility Minds",
-  // Neutrale Positionierung – bei Bedarf an die echte Selbstbeschreibung anpassen.
   positioning: "Agentur rund um Mobilitäts- und Marketingthemen",
-  // Tone of Voice, der in Outputs durchscheinen soll – ein Satz zum Mitgeben.
-  voice: "nahbar, klar und optimistisch – konkret statt Buzzword-Bingo, lieber eine Idee zu viel als eine Floskel",
+  voice: "nahbar, klar und optimistisch - konkret statt Buzzword-Bingo, lieber eine gute Idee zu viel als eine Floskel",
   dos: ["konkret und nahbar", "aktive Sprache", "ehrlich statt übertrieben"],
   donts: ["Buzzword-Bingo", "Superlative ohne Beleg", "Behördendeutsch"],
+  clientFocus:
+    "Wir arbeiten für Kund:innen aus Mobilität, Marketing, Kommunikation und serviceorientierten Angeboten. Gute Ergebnisse müssen zur Marke des Kunden, zur Zielgruppe und zum konkreten Kanal passen.",
 };
+
+export function buildPromptContext(role) {
+  return [
+    `Agentur: ${BRAND.name} - ${BRAND.positioning}.`,
+    `Unser Stil: ${BRAND.voice}.`,
+    `Arbeitsrolle: ${role.ctx}`,
+    "",
+    "Kunde/Projekt:",
+    "[Kundenname oder Projekt hier eintragen]",
+    "[Branche/Angebot: z.B. Mobilität, Fahrrad-Leasing, ÖPNV, Autohaus, E-Commerce, B2B-Service]",
+    "[Zielgruppe: wer soll reagieren, verstehen oder überzeugt werden?]",
+    "[Kundenziel: z.B. informieren, verkaufen, Vertrauen stärken, Rückfragen reduzieren]",
+    "[Kunden-Ton: eher sachlich, mutig, premium, nahbar, technisch, lokal?]",
+    "",
+    "Wichtig:",
+    "- Keine vertraulichen Daten in private KI-Tools.",
+    "- Annahmen markieren, wenn Kundendetails fehlen.",
+    "- Ergebnis immer auf Fakten, Ton, Marke und Kundentauglichkeit prüfen.",
+  ].join("\n");
+}

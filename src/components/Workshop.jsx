@@ -1,41 +1,41 @@
 import React, { useState } from "react";
 import { Check, Copy, Loader2, Play, Shield, Sparkles, Wand2, X } from "lucide-react";
 import { callClaude } from "../api/callClaude.js";
-import { BRAND } from "../data/brand.js";
+import { BRAND, buildPromptContext } from "../data/brand.js";
 
 const USE_CASES = [
   {
     id: "rewrite",
     label: "Text verbessern",
-    ziel: "Formuliere eine trockene interne Info-Mail freundlicher, klarer und handlungsorientierter um.",
-    format: "Betreff + 2 kurze Absätze + klare Info, was die Empfänger:innen tun müssen.",
-    ton: "Warm, professionell, direkte Sprache. Keine Floskeln, keine neuen Fakten erfinden.",
+    ziel: "Formuliere einen vorhandenen Kundentext klarer, markennäher und handlungsorientierter um.",
+    format: "Betreff/Headline + 2 kurze Absätze + klare Handlungsaufforderung.",
+    ton: "Passend zur Kundenmarke, nahbar und konkret. Keine Floskeln, keine neuen Fakten erfinden.",
   },
   {
     id: "reverse",
     label: "Reverse Prompting",
-    ziel: "Hilf mir, aus einer groben Idee einen präzisen Prompt zu bauen. Stelle zuerst maximal 5 Rückfragen.",
-    format: "Erst Rückfragen, danach fertiger Prompt, danach kurze Prüfliste für das Ergebnis.",
-    ton: "Strukturiert, fragend, kritisch. Markiere fehlende Informationen klar.",
+    ziel: "Hilf mir, aus einer groben Kundenaufgabe einen präzisen Prompt zu bauen. Stelle zuerst maximal 5 Rückfragen zum Kunden, Ziel und Kanal.",
+    format: "Erst Rückfragen, danach fertiger Prompt, danach kurze Prüfliste für Kundentauglichkeit.",
+    ton: "Strukturiert, fragend, kritisch. Fehlende Kundendetails sichtbar markieren.",
   },
   {
     id: "brainstorming",
     label: "Brainstorming",
-    ziel: "Entwickle mehrere Ideen oder Ansätze zu meinem Thema und hilf mir, die besten Optionen auszuwählen.",
+    ziel: "Entwickle mehrere Ideen oder Ansätze für einen konkreten Kunden und hilf mir, die besten Optionen auszuwählen.",
     format: "Erst kurze Rückfragen, dann 10 Ideen, danach Cluster und Top-3-Bewertung nach Wirkung, Aufwand und Risiko.",
-    ton: "Kreativ, konkret, aber nicht beliebig. Keine generischen Standardideen, sondern passend zum Kontext.",
+    ton: "Kreativ, konkret, aber nicht beliebig. Jede Idee muss zum Kunden, zur Zielgruppe und zum Kanal passen.",
   },
   {
     id: "stakeholder",
     label: "Kritische Prüfung",
-    ziel: "Prüfe meinen Entwurf aus mehreren Stakeholder-Perspektiven und zeige konkrete Verbesserungen.",
+    ziel: "Prüfe meinen Kundenentwurf aus mehreren Perspektiven und zeige konkrete Verbesserungen.",
     format: "Tabelle mit Perspektive, Stärke, Risiko/Unklarheit und konkreter Empfehlung.",
-    ton: "Kritisch, konstruktiv, konkret. Keine pauschalen Aussagen, Annahmen sichtbar machen.",
+    ton: "Kritisch, konstruktiv, konkret. Annahmen und fehlende Kundendetails sichtbar machen.",
   },
   {
     id: "agenda",
     label: "Meeting strukturieren",
-    ziel: "Erstelle aus losen Stichpunkten eine klare Meeting-Agenda mit Ziel, Zeitboxen und Verantwortlichkeiten.",
+    ziel: "Erstelle aus losen Stichpunkten eine klare Kundenmeeting-Agenda mit Ziel, Zeitboxen und Verantwortlichkeiten.",
     format: "Tabelle: Thema, Ziel, Zeit, Verantwortlich, gewünschtes Ergebnis.",
     ton: "Knapp, praktisch, entscheidungsorientiert. Punkte ohne Ziel als Rückfrage markieren.",
   },
@@ -45,7 +45,7 @@ export default function Workshop({ role }) {
   const [selected, setSelected] = useState(USE_CASES[0].id);
   const initial = USE_CASES[0];
   const [ziel, setZiel] = useState(initial.ziel);
-  const [kontext, setKontext] = useState(role.ctx);
+  const [kontext, setKontext] = useState(buildPromptContext(role));
   const [format, setFormat] = useState(initial.format);
   const [ton, setTon] = useState(initial.ton);
   const [material, setMaterial] = useState("");
@@ -66,6 +66,9 @@ export default function Workshop({ role }) {
 
   const addBrandVoice = () => {
     setTon((t) => (t.includes(BRAND.voice) ? t : `${t.trim() ? t.trim() + " " : ""}Marken-Ton: ${BRAND.voice}.`));
+  };
+  const resetContext = () => {
+    setKontext(buildPromptContext(role));
   };
 
   const assembled =
@@ -104,10 +107,10 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Wand2 size={14} /> Station 9 · Geführte Werkstatt</span>
+      <span className="eyebrow"><Wand2 size={14} /> Geführte Werkstatt</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Baue deinen Prompt mit Leitplanken.</h2>
       <p className="lede">
-        Wähle zuerst einen Use Case. Die Felder werden vorbefüllt, und du passt sie an deine echte Aufgabe an.
+        Wähle zuerst einen Use Case. Dann ergänzt du Kunde, Zielgruppe, Kanal und Material - erst dadurch wird der Prompt wirklich brauchbar.
       </p>
 
       <div className="card usecase-card" style={{ marginTop: 24 }}>
@@ -127,12 +130,15 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
           <textarea className="ta" rows={2} value={ziel} onChange={(e) => setZiel(e.target.value)} />
         </div>
         <div className="field">
-          <label>2. Kontext <span className="hint">- Rolle, Zielgruppe, Situation</span></label>
-          <textarea className="ta" rows={2} value={kontext} onChange={(e) => setKontext(e.target.value)} />
+          <label>
+            2. Kontext <span className="hint">- Firma, Kunde, Zielgruppe, Situation</span>
+            <button type="button" className="link-add" onClick={resetContext}>+ Kundenbriefing</button>
+          </label>
+          <textarea className="ta" rows={8} value={kontext} onChange={(e) => setKontext(e.target.value)} />
         </div>
         <div className="field">
           <label>3. Material <span className="hint">- Beispieltext, Stichpunkte oder grobe Idee</span></label>
-          <textarea className="ta" rows={3} value={material} onChange={(e) => setMaterial(e.target.value)} placeholder="z.B. Mail, Meeting-Stichpunkte, grobe Kampagnenidee oder ein Entwurf zur Prüfung" />
+          <textarea className="ta" rows={3} value={material} onChange={(e) => setMaterial(e.target.value)} placeholder="z.B. Kundenbriefing, Mail, Landingpage-Text, Kampagnenidee, Zielgruppen-Notizen oder ein Entwurf zur Prüfung" />
         </div>
         <div className="field">
           <label>4. Format <span className="hint">- wie soll die Antwort aussehen?</span></label>
@@ -149,7 +155,7 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
 
       <div className="workshop-tip">
         <Sparkles size={16} />
-        <span>Stärker wird der Prompt, wenn du Material ergänzt: Rohtext, Stichpunkte, Zielgruppe, No-Gos oder ein Beispiel für den gewünschten Ton.</span>
+        <span>Stärker wird der Prompt, wenn du Kundendetails ergänzt: Zielgruppe, Kanal, gewünschte Reaktion, Marken-Ton, No-Gos und echtes Material aus dem Projekt.</span>
       </div>
 
       <div className="label" style={{ padding: "20px 0 8px" }}>Dein fertiger Prompt</div>

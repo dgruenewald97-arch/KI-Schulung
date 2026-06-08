@@ -5,7 +5,7 @@ import { BASICS } from "../data/basics.js";
 export default function Basics() {
   return (
     <section className="sec">
-      <span className="eyebrow"><ClipboardCheck size={14} /> Station 2 · KI im Arbeitsalltag</span>
+      <span className="eyebrow"><ClipboardCheck size={14} /> Grundlagen</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Erst das gemeinsame Fundament.</h2>
       <p className="lede">
         KI ist kein Orakel und kein Ersatz für Fachurteil. Sie ist ein Arbeitsmittel:

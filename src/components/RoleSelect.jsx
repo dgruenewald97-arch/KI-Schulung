@@ -5,7 +5,7 @@ import { ROLES } from "../data/roles.js";
 export default function RoleSelect({ role, setRole }) {
   return (
     <section className="sec">
-      <span className="eyebrow"><UsersRound size={14} /> Station 6 · Praxisbezug</span>
+      <span className="eyebrow"><UsersRound size={14} /> Praxisbezug</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Jetzt wird es konkreter.</h2>
       <p className="lede">
         Die nächsten Übungen nutzen Beispiele aus deinem Arbeitsbereich. Wähle aus, womit du am meisten zu tun hast.

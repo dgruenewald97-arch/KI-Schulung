@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Check, Copy, Lightbulb, MessageSquareText, SearchCheck, UsersRound, Zap, AlertTriangle, Quote, Drama, ListOrdered, Table } from "lucide-react";
+import { buildPromptContext } from "../data/brand.js";
 
 const METHODS = [
   {
@@ -11,25 +12,25 @@ const METHODS = [
     why: "Die KI kennt deinen Kontext nicht. Die fünf Bausteine geben ihr die Leitplanken, die du auch einer neuen Kollegin geben würdest.",
     pitfalls: ["Nur das Thema nennen statt das konkrete Ergebnis", "Kein Material mitgeben – dann erfindet die KI Details", "Format vergessen → Fließtext statt nutzbarer Struktur"],
     prompt: (role) =>
-`Ich möchte eine Aufgabe mit KI bearbeiten.
+`Ich möchte eine Kundenaufgabe mit KI vorbereiten.
 
 Ziel:
-[Was soll am Ende entstehen?]
+[Was soll am Ende für den Kunden oder das Team entstehen?]
 
-Kontext:
-${role.ctx}
-[Worum geht es, wer ist die Zielgruppe, was ist wichtig?]
+Agentur- und Kundenkontext:
+${buildPromptContext(role)}
 
 Material:
-[Rohtext, Stichpunkte, Beispiel oder Daten – das, womit die KI arbeiten soll]
+[Rohtext, Kundenbriefing, Stichpunkte, Beispiel oder Daten - das, womit die KI arbeiten soll]
 
 Format:
 [z.B. Mail, Agenda, LinkedIn-Post, Tabelle, 5 Bulletpoints]
 
 Ton & Richtlinien:
-[z.B. professionell, klar, keine neuen Fakten erfinden, Annahmen kennzeichnen]
+[Ton des Kunden beachten. Wenn Kundenton unklar ist: 2-3 passende Tonvarianten vorschlagen.]
+[Keine neuen Fakten erfinden, Annahmen kennzeichnen, vertrauliche Daten schützen.]
 
-Wenn dir für ein gutes Ergebnis etwas fehlt, frag lieber kurz nach, statt zu raten.`,
+Wenn dir für ein kundentaugliches Ergebnis etwas fehlt, frag zuerst nach, statt zu raten.`,
     takeaway: "Gut für: Texte, Zusammenfassungen, erste Entwürfe, Struktur, Varianten.",
   },
   {
@@ -46,14 +47,14 @@ Wenn dir für ein gutes Ergebnis etwas fehlt, frag lieber kurz nach, statt zu ra
 Meine grobe Aufgabe:
 [Beschreibe in 1-2 Sätzen, was du machen willst.]
 
-Mein Arbeitskontext:
-${role.ctx}
+Agentur- und Kundenkontext:
+${buildPromptContext(role)}
 
-Bitte stelle mir zuerst maximal 5 Rückfragen, die du brauchst, um daraus einen präzisen Prompt zu machen.
+Bitte stelle mir zuerst maximal 5 Rückfragen, die du brauchst, um daraus einen präzisen, kundentauglichen Prompt zu machen.
 Wenn ich geantwortet habe, formuliere daraus:
 1. einen fertigen Prompt,
 2. eine kurze Erklärung, warum der Prompt so aufgebaut ist,
-3. eine Checkliste, worauf ich das Ergebnis prüfen sollte.`,
+3. eine Checkliste, worauf ich das Ergebnis für diesen Kunden prüfen sollte.`,
     takeaway: "Gut für: unscharfe Aufgaben, neue Themen, leere Seite, komplexe Briefings.",
   },
   {
@@ -67,8 +68,8 @@ Wenn ich geantwortet habe, formuliere daraus:
     prompt: (role) =>
 `Hilf mir beim Brainstorming zu folgender Aufgabe.
 
-Mein Kontext:
-${role.ctx}
+Agentur- und Kundenkontext:
+${buildPromptContext(role)}
 
 Aufgabe / Thema:
 [Worum geht es? Für welchen Kunden, welches Projekt oder welches Ziel?]
@@ -79,7 +80,7 @@ Bitte arbeite so:
 3. Cluster die Ideen nach Richtung oder Nutzen.
 4. Bewerte die besten 3 nach Wirkung, Aufwand und Risiko.
 
-Wichtig: Keine generischen Standardideen. Erkläre kurz, warum die Top-Ideen passen.`,
+Wichtig: Keine generischen Standardideen. Jede Idee muss sichtbar zum Kunden, zur Zielgruppe und zum Kanal passen.`,
     takeaway: "Gut für: Kampagnenideen, Headlines, Workshop-Ansätze, Content-Formate, Problemlösungen.",
   },
   {
@@ -93,18 +94,18 @@ Wichtig: Keine generischen Standardideen. Erkläre kurz, warum die Top-Ideen pas
     prompt: (role) =>
 `Prüfe den folgenden Entwurf kritisch aus mehreren Perspektiven.
 
-Mein Kontext:
-${role.ctx}
+Agentur- und Kundenkontext:
+${buildPromptContext(role)}
 
 Entwurf:
 [Text, Idee, Agenda, Kampagne oder Entscheidung einfügen]
 
 Bitte bewerte aus diesen Rollen:
 1. Kund:in / Zielgruppe
-2. Projektmanagement
-3. Kreation / Marke
-4. Interne Regeln / Compliance
-5. Geschäftsführung / Budget
+2. Kundenmarke / Tonalität
+3. Mobility-Minds-Team / Umsetzbarkeit
+4. Kanal / Format
+5. Risiken: Fakten, Datenschutz, Budget, Freigabe
 
 Für jede Rolle:
 - Was ist stark?
@@ -162,7 +163,7 @@ export default function Methods({ role }) {
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Zap size={14} /> Station 8 · Richtig prompten</span>
+      <span className="eyebrow"><Zap size={14} /> Prompt-Methoden</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Vier Methoden, die wirklich helfen.</h2>
       <p className="lede">
         Prompting ist kein Zauberspruch. Du entscheidest erst, welche Art Hilfe du brauchst:

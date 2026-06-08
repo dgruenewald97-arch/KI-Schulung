@@ -28,16 +28,12 @@ html,body,#root{height:100%;margin:0}
 .logo{display:flex;align-items:center;gap:9px;font-family:'Bricolage Grotesque';font-weight:700;font-size:15px}
 .logo .dot{width:9px;height:9px;border-radius:50%;background:var(--acc);box-shadow:0 0 14px var(--acc)}
 .steps{margin-left:auto;font-size:12.5px;color:var(--muted);font-variant-numeric:tabular-nums}
-.module-switch{margin-left:auto;display:flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:12px;background:rgba(0,0,0,.18)}
-.module-switch button{font-family:'Hanken Grotesk';font-size:12.5px;font-weight:700;cursor:pointer;border:0;
-  border-radius:9px;padding:7px 10px;color:var(--muted);background:transparent;transition:all .16s ease}
-.module-switch button:hover{color:var(--txt)}
-.module-switch button.on{background:var(--accsoft);color:var(--acc)}
-.module-switch + .steps{margin-left:0}
+.top-step{margin-left:auto;display:flex;align-items:center;gap:10px;color:var(--muted);font-size:13px}
+.top-step span{color:var(--txt);font-weight:700}
+.top-step strong{font-weight:700;color:var(--acc);font-variant-numeric:tabular-nums}
 @media(max-width:520px){
   .topbar-in{flex-wrap:wrap}
-  .module-switch{order:3;width:100%;margin-left:0}
-  .module-switch button{flex:1}
+  .top-step{width:100%;margin-left:0;justify-content:space-between}
   .steps{margin-left:auto}
 }
 .pbar{height:3px;background:rgba(255,255,255,.06)}

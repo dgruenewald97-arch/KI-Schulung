@@ -5,7 +5,7 @@ import { COMPASS } from "../data/compass.js";
 export default function Compass() {
   return (
     <section className="sec">
-      <span className="eyebrow"><CompassIcon size={14} /> Station 5 · KI-Kompass</span>
+      <span className="eyebrow"><CompassIcon size={14} /> KI-Kompass</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Welche Methode passt gerade?</h2>
       <p className="lede">
         Bevor du promptest, entscheide kurz, welche Art Hilfe du brauchst. Dann wird aus KI kein Ratespiel, sondern ein Werkzeug.

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Swords, Eye, RotateCcw, Sparkles } from "lucide-react";
 import { SCENARIOS } from "../data/duels.js";
+import { buildPromptContext } from "../data/brand.js";
 
 export default function Duel({ role }) {
   const scenarios = SCENARIOS[role.id] || [];
   const [active, setActive] = useState(scenarios[0]?.id);
   const [revealed, setRevealed] = useState(false);
   const sc = scenarios.find((s) => s.id === active) || scenarios[0];
+  const context = buildPromptContext(role);
 
   if (!sc) return null;
 
@@ -17,7 +19,7 @@ export default function Duel({ role }) {
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Swords size={14} /> Station 7 · Prompt-Duell</span>
+      <span className="eyebrow"><Swords size={14} /> Prompt-Vergleich</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Gleiche Aufgabe, zwei Prompts.</h2>
       <p className="lede">
         Derselbe Job, einmal faul und einmal sauber gebrieft. Schau dir die Prompts an,
@@ -50,7 +52,7 @@ export default function Duel({ role }) {
 
         <div className="col good">
           <div className="col-h"><Sparkles size={15} /> Starker Prompt</div>
-          <div className="prompt-box">{sc.good(role.ctx)}</div>
+          <div className="prompt-box">{sc.good(context)}</div>
           <div className="label">Ergebnis</div>
           {revealed
             ? <div className="out">{sc.goodOut}</div>
