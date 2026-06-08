@@ -21,8 +21,9 @@ import ModuleTwo from "./components/ModuleTwo.jsx";
    Läuft komplett offline:  npm install && npm run dev
    - Station 7 (Prompt-Duell) nutzt vorbereitete, rollenspezifische
      Beispielantworten und braucht KEIN Backend -> Aha-Moment sofort.
-   - Station 9 (Werkstatt) ruft callClaude() auf. Das ist aktuell
-     ein Stub -> hier später Langdock / eigenen Proxy anbinden
+   - Station 9 (Werkstatt) ruft callClaude() auf. Das ist bewusst KEINE
+     echte KI, sondern ein lokaler Struktur-Check des gebauten Prompts.
+     Den fertigen Prompt nimmt man mit nach Langdock
      (siehe src/api/callClaude.js und README / CLAUDE.md).
    ============================================================ */
 export default function App() {

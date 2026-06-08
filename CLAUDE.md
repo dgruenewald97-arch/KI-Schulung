@@ -41,7 +41,7 @@ src/
     myths.js            · MYTHS (Station 3)
     learn.jsx           · LEARN (Station 4, mit Icons)
     compass.js          · COMPASS (Station 5)
-    roles.js            · ROLES (Rolle, Kontext, Werkstatt-Tipp)
+    roles.js            · ROLES (Rolle + Kontext-Satz `ctx`)
     duels.js            · SCENARIOS – Duell-Szenarien JE ROLLE (Station 7)
     quiz.js             · QUIZ (Station 10)
   components/           · Intro, Basics, Myths, Learn, Compass, RoleSelect,

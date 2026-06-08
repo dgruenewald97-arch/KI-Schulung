@@ -28,7 +28,7 @@ export default function Finish({ restart }) {
       </p>
 
       <div className="card" style={{ marginTop: 30, textAlign: "left" }}>
-        <h3 style={{ fontSize: 17, marginBottom: 4 }}>Deine 3 Use Cases</h3>
+        <h3 style={{ fontSize: 17, marginBottom: 4 }}>Deine Use Cases für den Start</h3>
         <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "0 0 14px" }}>
           Wähle keine riesigen Projekte. Starte mit Aufgaben, die regelmäßig vorkommen und bei denen du das Ergebnis gut prüfen kannst.
         </p>

@@ -1,5 +1,5 @@
 /* ============================================================
-   PROMPT-DUELL · Szenarien je Rolle  (Station 3)
+   PROMPT-DUELL · Szenarien je Rolle  (Station 7)
    ------------------------------------------------------------
    Läuft komplett offline mit vorbereiteten Beispielantworten –
    so funktioniert der Aha-Moment ohne Backend.
