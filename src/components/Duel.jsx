@@ -121,7 +121,7 @@ export default function Duel({ role }) {
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Zap size={14} /> Station 6 · Richtig prompten</span>
+      <span className="eyebrow"><Zap size={14} /> Station 7 · Richtig prompten</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Vier Methoden, die wirklich helfen.</h2>
       <p className="lede">
         Prompting ist kein Zauberspruch. Du entscheidest erst, welche Art Hilfe du brauchst:

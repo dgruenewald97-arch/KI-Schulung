@@ -23,8 +23,8 @@ export default function Finish({ restart }) {
       <div className="medal"><Trophy size={36} color="#06120b" /></div>
       <h2 style={{ fontSize: 34 }}>Geschafft.</h2>
       <p className="lede" style={{ margin: "14px auto 0" }}>
-        Du hast jetzt drei praktische Muster: sauber briefen, mit Reverse Prompting klären
-        und Ergebnisse aus mehreren Perspektiven prüfen.
+        Du hast jetzt vier praktische Muster: sauber briefen, mit Reverse Prompting klären,
+        Ideen brainstormen und Ergebnisse aus mehreren Perspektiven prüfen.
       </p>
 
       <div className="card" style={{ marginTop: 30, textAlign: "left" }}>
@@ -47,6 +47,18 @@ export default function Finish({ restart }) {
         <div className="rule"><span className="n">2</span> <span>Bei unklaren Aufgaben: Reverse Prompting nutzen und erst Rückfragen beantworten.</span></div>
         <div className="rule"><span className="n">3</span> <span>Bei wichtigen Ergebnissen: kritische Stakeholder-Perspektiven einholen.</span></div>
         <div className="rule"><span className="n">4</span> <span>Im Job Langdock nutzen und Outputs prüfen: Fakten, Quellen, Zahlen, Bias, Tonalität und Kundentauglichkeit.</span></div>
+      </div>
+
+      <div className="card quality-card" style={{ marginTop: 18, textAlign: "left" }}>
+        <h3 style={{ fontSize: 17, marginBottom: 8 }}>Qualitätscheck vor dem Verwenden</h3>
+        <div className="quality-grid">
+          <span>Fakten stimmen?</span>
+          <span>Quellen geprüft?</span>
+          <span>Ton passend?</span>
+          <span>Annahmen sichtbar?</span>
+          <span>Keine erfundenen Details?</span>
+          <span>Würde ich das so freigeben?</span>
+        </div>
       </div>
 
       <div className="notice" style={{ marginTop: 18, textAlign: "left" }}>

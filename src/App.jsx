@@ -5,6 +5,7 @@ import Intro from "./components/Intro.jsx";
 import Basics from "./components/Basics.jsx";
 import Myths from "./components/Myths.jsx";
 import Learn from "./components/Learn.jsx";
+import Compass from "./components/Compass.jsx";
 import RoleSelect from "./components/RoleSelect.jsx";
 import Duel from "./components/Duel.jsx";
 import Workshop from "./components/Workshop.jsx";
@@ -28,7 +29,7 @@ export default function App() {
   const [role, setRole] = useState(ROLES[0]);
   const [module, setModule] = useState("mod1");
 
-  const sections = ["intro", "basics", "myths", "learn", "role", "duel", "workshop", "quiz", "finish"];
+  const sections = ["intro", "basics", "myths", "learn", "compass", "role", "duel", "workshop", "quiz", "finish"];
   const total = sections.length;
   const cur = sections[step];
   const go = (d) => setStep((s) => Math.min(total - 1, Math.max(0, s + d)));
@@ -58,6 +59,7 @@ export default function App() {
         {module === "mod1" && cur === "basics" && <Basics />}
         {module === "mod1" && cur === "myths" && <Myths />}
         {module === "mod1" && cur === "learn" && <Learn />}
+        {module === "mod1" && cur === "compass" && <Compass />}
         {module === "mod1" && cur === "role" && <RoleSelect role={role} setRole={setRole} />}
         {module === "mod1" && cur === "duel" && <Duel key={role.id} role={role} />}
         {module === "mod1" && cur === "workshop" && <Workshop key={role.id} role={role} />}

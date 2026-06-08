@@ -6,7 +6,7 @@ export default function Learn() {
   return (
     <section className="sec">
       <span className="eyebrow"><Brain size={14} /> Station 4 · Sicher und wirksam nutzen</span>
-      <h2 style={{ fontSize: 30, marginTop: 18 }}>Sechs Regeln für gute KI-Arbeit.</h2>
+      <h2 style={{ fontSize: 30, marginTop: 18 }}>Acht Regeln für gute KI-Arbeit.</h2>
       <p className="lede">
         Diese Punkte helfen dir, KI produktiv einzusetzen, ohne Verantwortung, Daten oder Qualität aus der Hand zu geben.
       </p>

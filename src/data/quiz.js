@@ -1,11 +1,11 @@
 /* Station 8 · Mini-Quiz */
 export const QUIZ = [
   {
-    q: "Wann ist Reverse Prompting besonders hilfreich?",
+    q: "Welche Methode passt, wenn die Aufgabe noch unscharf ist?",
     opts: [
-      "Wenn die Aufgabe noch unscharf ist und die KI erst Rückfragen stellen soll",
-      "Wenn man gar keinen Kontext geben möchte",
-      "Wenn ein Ergebnis ohne Prüfung direkt veröffentlicht werden soll",
+      "Reverse Prompting",
+      "Direkt finalen Text verlangen",
+      "Quellencheck",
     ],
     correct: 0,
     ex: "Reverse Prompting hilft bei der leeren Seite: Die KI klärt mit dir Ziel, Kontext, Format und Grenzen, bevor sie den eigentlichen Prompt formuliert.",
@@ -41,13 +41,23 @@ export const QUIZ = [
     ex: "Langdock ist euer Arbeitstool für KI-Aufgaben im Job. Private oder frei gewählte KI-Tools nutzt ihr dafür nicht.",
   },
   {
-    q: "Was machst du mit einem KI-Output, bevor er an Kund:innen oder ins Team geht?",
+    q: "Was machst du, wenn ein KI-Output Fakten oder Quellen enthält?",
     opts: [
-      "Direkt übernehmen, wenn er professionell klingt",
-      "Fakten, Ton, Quellen, Zahlen und Passung prüfen",
-      "Nur die Rechtschreibung ansehen",
+      "Quelle anzeigen lassen, öffnen, Datum prüfen und gegenchecken",
+      "Direkt übernehmen, wenn die Formulierung sicher klingt",
+      "Nur fragen, ob die KI sich sicher ist",
+    ],
+    correct: 0,
+    ex: "KI kann Quellen falsch darstellen oder Inhalte erfinden. Öffnen, Datum prüfen und mit einer zweiten Quelle gegenchecken.",
+  },
+  {
+    q: "Was ist eine gute Folgefrage, wenn ein Output fast passt?",
+    opts: [
+      "Mach irgendwas anderes",
+      "Mach es konkreter für diese Zielgruppe und kürze es um 30 %",
+      "Vergiss alles und starte neu",
     ],
     correct: 1,
-    ex: "Überzeugend formuliert heißt nicht automatisch korrekt. Prüfung und Freigabe bleiben menschliche Verantwortung.",
+    ex: "Gute Folgefragen geben konkretes Feedback: Zielgruppe, Ton, Länge, Struktur oder fehlende Annahmen.",
   },
 ];

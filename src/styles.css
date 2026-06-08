@@ -67,6 +67,16 @@ html,body,#root{height:100%;margin:0}
 .module-preview p{color:var(--muted);font-size:14.5px;margin:0}
 .preview-list{display:grid;gap:9px;margin-top:18px}
 .preview-list span{border:1px solid var(--line);border-radius:10px;background:rgba(0,0,0,.16);padding:11px 12px;color:var(--muted);font-size:14px}
+.compass-list{display:grid;gap:12px}
+.compass-item{display:grid;grid-template-columns:auto 1fr;gap:13px;align-items:flex-start;
+  background:linear-gradient(180deg,var(--bg2),var(--bg3));border:1px solid var(--line);
+  border-radius:16px;padding:16px}
+.compass-ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;
+  background:var(--accsoft);color:var(--acc);flex-shrink:0}
+.compass-need{font-family:'Bricolage Grotesque';font-size:17px;font-weight:700;margin-bottom:3px}
+.compass-method{display:inline-flex;color:var(--acc);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.compass-item p{color:var(--muted);font-size:14px;margin:0}
+@media(min-width:680px){.compass-list{grid-template-columns:1fr 1fr}.compass-item:last-child{grid-column:1 / -1}}
 
 .btn{font-family:'Hanken Grotesk';font-weight:600;font-size:15px;cursor:pointer;border:none;
   border-radius:12px;padding:13px 20px;display:inline-flex;align-items:center;gap:9px;
@@ -174,6 +184,10 @@ html,body,#root{height:100%;margin:0}
 .rule{display:flex;gap:11px;padding:13px 0;border-bottom:1px solid var(--line);font-size:14.5px}
 .rule:last-child{border:none}
 .rule .n{color:var(--acc);font-family:'Bricolage Grotesque';font-weight:700}
+.quality-grid{display:grid;gap:8px}
+@media(min-width:620px){.quality-grid{grid-template-columns:1fr 1fr}}
+.quality-grid span{border:1px solid var(--line);background:rgba(0,0,0,.16);border-radius:10px;
+  color:var(--muted);font-size:13.5px;padding:10px 12px}
 .starter-list{display:grid;gap:8px;margin:0 0 14px}
 @media(min-width:620px){.starter-list{grid-template-columns:1fr 1fr}}
 .starter{font-family:'Hanken Grotesk';cursor:pointer;text-align:left;border:1px solid var(--line2);
