@@ -102,6 +102,44 @@ Damit wir nicht aneinander vorbei arbeiten, würde ich die zwei, drei Knackpunkt
 
 Beste Grüße`,
     },
+    {
+      id: "nachfassen",
+      label: "Angebot nachfassen",
+      scenario:
+        "Szenario: Ein Kunde hat dein Angebot vor zwei Wochen bekommen und sich nicht gemeldet. Du willst freundlich nachfassen, ohne zu drängen.",
+      bad: "Schreib eine Nachfass-Mail zum Angebot.",
+      good: (ctx) =>
+`# Ziel
+Formuliere eine freundliche Nachfass-Mail zu einem Angebot, das vor zwei Wochen rausging und noch unbeantwortet ist: Interesse signalisieren, einen niedrigschwelligen nächsten Schritt anbieten – ohne Druck.
+
+# Kontext
+${ctx} Die Geschäftsbeziehung ist neu und soll positiv starten.
+
+# Material
+Angebot vom <Datum> zu einem Projekt, bisher keine Rückmeldung.
+
+# Format
+Kurze Mail, max. 110 Wörter, mit Betreffzeile und einem konkreten, leichten Gesprächsangebot am Ende.
+
+# Ton & Richtlinien
+Freundlich, locker-professionell, kein Verkaufsdruck, Sie-Ansprache. Keine erfundenen Details zum Angebotsinhalt.`,
+      badOut:
+`Sehr geehrte Damen und Herren,
+
+wir wollten nachfragen, ob Sie unser Angebot erhalten haben. Bitte geben Sie uns Bescheid.
+
+Mit freundlichen Grüßen`,
+      goodOut:
+`Betreff: Kurz nachgehakt – passt unser Angebot für Sie?
+
+Sehr geehrte Frau Vogt,
+
+vor zwei Wochen ist unser Angebot zu Ihrem Projekt bei Ihnen gelandet – ich wollte mich kurz melden, falls Fragen offen sind oder etwas anders zugeschnitten sein soll.
+
+Wenn es leichter ist, telefonieren wir 10 Minuten: Passt Donnerstag Vormittag? Ansonsten lasse ich Ihnen gern den Raum, sich zu melden, wenn es bei Ihnen passt.
+
+Beste Grüße`,
+    },
   ],
 
   /* ---------------------------------------------------------- */
@@ -178,6 +216,41 @@ Such dir dein Wunschrad aus – die Rate läuft bequem über deinen Arbeitgeber 
 Und nebenbei? Entspannter pendeln, mehr Bewegung, weniger Tankstellenbesuche.
 
 Wunschrad finden`,
+    },
+    {
+      id: "claim",
+      label: "Claim entwickeln",
+      scenario:
+        "Szenario: Für eine Kampagne rund um nachhaltige Mobilität im Alltag braucht ihr einen kurzen Claim, der hängenbleibt.",
+      bad: "Gib mir einen Slogan für nachhaltige Mobilität.",
+      good: (ctx) =>
+`# Ziel
+Entwickle 6 Claim-Varianten für eine Kampagne zum Thema nachhaltige Mobilität im Alltag.
+
+# Kontext
+${ctx} Zielgruppe: Stadtbewohner:innen 25–45, offen für Alternativen zum eigenen Auto. Markenton: nahbar, optimistisch.
+
+# Material
+Kampagnenkern: Umsteigen auf Bus, Bahn und Rad soll leicht und positiv wirken – nicht belehrend.
+
+# Format
+Nummerierte Liste, pro Claim max. 6 Wörter, dahinter in Klammern die Stoßrichtung (Nutzen / Gefühl / Augenzwinkern).
+
+# Ton & Richtlinien
+Kein Öko-Zeigefinger, keine abgegriffenen Wortspiele, Deutsch. Keine fremden Marken-Slogans übernehmen.`,
+      badOut:
+`- Fahr grün!
+- Nachhaltig unterwegs
+- Rette die Umwelt
+- Mobilität der Zukunft
+- Gemeinsam mobil`,
+      goodOut:
+`1. Stadt fühlt sich besser zu Fuß an. (Gefühl)
+2. Lass das Auto auch mal Pause machen. (Augenzwinkern)
+3. Ankommen ohne Parkplatzsuche. (Nutzen)
+4. Dein Weg, leiser und leichter. (Gefühl)
+5. Umsteigen war selten so entspannt. (Nutzen)
+6. Die Stadt gehört wieder dir. (Gefühl)`,
     },
   ],
 
@@ -265,6 +338,39 @@ Bei Fragen jederzeit gern.
 
 Beste Grüße`,
     },
+    {
+      id: "aufgaben",
+      label: "Aufgaben aus Kundenmail",
+      scenario:
+        "Szenario: Der Kunde hat eine lange Mail mit mehreren vermischten Wünschen geschickt. Daraus sollen klare Aufgaben fürs Team werden.",
+      bad: "Mach aus dieser Kundenmail Aufgaben.",
+      good: (ctx) =>
+`# Ziel
+Zieh aus der Kundenmail (siehe Material) eine klare Aufgabenliste fürs Team – getrennt nach Verantwortung und Dringlichkeit.
+
+# Kontext
+${ctx} Die Liste geht intern raus und soll sofort verteilbar sein.
+
+# Material
+<Kundenmail einfügen> – enthält vermischt: Textänderung an der Landingpage, neues Key-Visual, eine Reporting-Frage, einen Folgetermin und einen Budget-Punkt.
+
+# Format
+Tabelle mit Spalten: Aufgabe | Wer (Platzhalter) | Dringlichkeit (hoch/mittel/niedrig) | offene Rückfrage.
+
+# Ton & Richtlinien
+Nur was in der Mail steht, nichts erfinden. Vermischtes sauber trennen, Unklares als Rückfrage markieren.`,
+      badOut:
+`Der Kunde will ein paar Änderungen, einen neuen Termin und hat eine Frage zum Reporting. Wir sollten uns darum kümmern.`,
+      goodOut:
+`| Aufgabe | Wer | Dringlichkeit | Rückfrage |
+| Landingpage-Text anpassen (Absatz 2) | [Text] | hoch | Welche Version ist aktuell? |
+| Neues Key-Visual liefern | [Design] | mittel | Format/Maße? |
+| Reporting-Frage beantworten | [Analyse] | mittel | Welcher Zeitraum genau? |
+| Folgetermin abstimmen | [PM] | hoch | KW-Präferenz des Kunden? |
+| Budget-Punkt klären | [PM] | niedrig | – |
+
+Hinweis: Reihenfolge nach Dringlichkeit; offene Rückfragen vor Start klären.`,
+    },
   ],
 
   /* ---------------------------------------------------------- */
@@ -341,6 +447,32 @@ Mische lehrreich, Behind-the-Scenes und meinungsstark. Keine reinen Werbe-Posts,
 5. Behind-the-Scenes: ein Tag in der Kreation, ehrlich inkl. Sackgassen. Format: kurzer Text + Foto.
 6. „Frag die Agentur“ – wir sammeln Fragen der Community und beantworten die häufigste. Format: Umfrage → Folgepost.`,
     },
+    {
+      id: "kommentar",
+      label: "Kritischen Kommentar beantworten",
+      scenario:
+        "Szenario: Unter einem Post steht ein kritischer, aber sachlicher Kommentar. Du willst souverän öffentlich antworten – die Community liest mit.",
+      bad: "Antworte auf den kritischen Kommentar.",
+      good: (ctx) =>
+`# Ziel
+Formuliere eine souveräne, öffentliche Antwort auf einen kritischen, aber sachlichen Kommentar unter einem Firmen-Post.
+
+# Kontext
+${ctx} Die Community liest mit – wir wollen offen und erwachsen wirken, nicht defensiv.
+
+# Material
+Kommentar (sinngemäß): „Schöne Worte, aber wie sieht das konkret aus? Wirkt nach Marketing.“
+
+# Format
+2–4 Sätze: eine ehrliche Einordnung + ein konkreter Beleg oder nächster Schritt + eine offene Rückfrage.
+
+# Ton & Richtlinien
+Ruhig, zugewandt, nicht rechtfertigend, kein Werbe-Sprech. Keine Versprechen, die wir nicht halten können.`,
+      badOut:
+`Danke für deinen Kommentar! Wir nehmen dein Feedback sehr ernst und arbeiten ständig an Verbesserungen. 😊`,
+      goodOut:
+`Berechtigter Punkt – „klingt gut“ reicht nicht. Konkret heißt das bei uns: <ein nachprüfbares Beispiel>. Demnächst zeigen wir einen echten Case dazu, ehrlich inklusive der Stellen, die nicht glattliefen. Was würde dich am meisten überzeugen?`,
+    },
   ],
 
   /* ---------------------------------------------------------- */
@@ -413,6 +545,39 @@ Nüchtern und methodisch. Keine Ursache als sicher darstellen – es sind Hypoth
 5. Ladezeit. These: Mehr Traffic = langsamere Seite. Prüfen: Ladezeit im betroffenen Zeitraum messen.
 
 Was mir zur Einordnung noch fehlt: Verlief der Anstieg parallel zum Kampagnenstart, und gilt er für alle Quellen oder nur die neue?`,
+    },
+    {
+      id: "abtest",
+      label: "A/B-Test einordnen",
+      scenario:
+        "Szenario: Ein A/B-Test ist gelaufen. Du sollst nicht nur die Gewinner-Zahl nennen, sondern eine belastbare Empfehlung formulieren.",
+      bad: "Welche Variante hat gewonnen, A oder B?",
+      good: (ctx) =>
+`# Ziel
+Formuliere aus den A/B-Test-Zahlen (siehe Material) eine belastbare Empfehlung – inklusive Hinweis, wie sicher das Ergebnis ist.
+
+# Kontext
+${ctx} Das Ergebnis fließt in eine Budget-Entscheidung; Verlässlichkeit ist wichtiger als ein schnelles „A gewinnt“.
+
+# Material
+Variante A: 4,1 % Conversion bei 1.200 Besucher:innen. Variante B: 4,8 % bei 1.150 Besucher:innen. Laufzeit: 6 Tage.
+
+# Format
+Drei kurze Blöcke: (1) Empfehlung in 1 Satz, (2) wie eindeutig das ist (Stichprobe/Laufzeit), (3) konkreter nächster Schritt.
+
+# Ton & Richtlinien
+Nüchtern, ehrlich über Unsicherheit. Keine Scheingenauigkeit, keine erfundene Signifikanz.`,
+      badOut:
+`Variante B hat mit 4,8 % gewonnen, also sollten wir B nehmen.`,
+      goodOut:
+`Empfehlung
+Tendenz zu Variante B – aber noch nicht final festlegen.
+
+Wie sicher
+Der Unterschied (4,1 % vs. 4,8 %) ist klein, die Laufzeit mit 6 Tagen kurz und die Stichprobe je Variante überschaubar. Das kann echt sein – oder Zufall.
+
+Nächster Schritt
+Test 5–7 Tage weiterlaufen lassen (auch über ein Wochenende), dann erneut prüfen. Erst bei stabilem Vorsprung auf B umstellen.`,
     },
   ],
 
@@ -491,6 +656,43 @@ Knapp und übersichtlich. Die Zeitangaben sollen realistisch in 45 Minuten passe
 Puffer – 5 Min
 
 Tipp: Punkte ohne Entscheidung lieber asynchron klären.`,
+    },
+    {
+      id: "wiki",
+      label: "Wiki-Eintrag aus Notizen",
+      scenario:
+        "Szenario: Eine Frage kommt im Team immer wieder. Aus deiner Antwort soll ein wiederverwendbarer Wiki-Eintrag werden.",
+      bad: "Schreib einen Wiki-Eintrag dazu.",
+      good: (ctx) =>
+`# Ziel
+Mach aus den Stichpunkten (siehe Material) einen klaren, wiederverwendbaren Wiki-Eintrag, der die wiederkehrende Frage beantwortet.
+
+# Kontext
+${ctx} Der Eintrag soll auch für neue Kolleg:innen ohne Vorwissen verständlich sein.
+
+# Material
+Frage: „Wie reiche ich Belege für Reisekosten ein?“ – Stichpunkte: Formular im Intranet, Belege als PDF, bis zum 5. des Monats, Freigabe durch Teamlead.
+
+# Format
+Kurzer Eintrag: 1 Satz „Worum geht's“, dann nummerierte Schritte, am Ende „Häufige Stolperfallen“.
+
+# Ton & Richtlinien
+Einfach, freundlich, Du-Ansprache. Nur was in den Stichpunkten steht, nichts dazu erfinden.`,
+      badOut:
+`Reisekosten kann man im Intranet einreichen. Einfach das Formular ausfüllen und abschicken.`,
+      goodOut:
+`Reisekosten einreichen
+
+Worum geht's: So reichst du Belege für eine Dienstreise korrekt ein.
+
+1. Formular im Intranet öffnen und ausfüllen.
+2. Belege als PDF anhängen.
+3. Bis zum 5. des Monats absenden.
+4. Deine Teamlead gibt die Abrechnung frei.
+
+Häufige Stolperfallen:
+• Belege als Foto statt PDF – wird oft abgelehnt.
+• Nach dem 5. eingereicht – läuft erst im Folgemonat.`,
     },
   ],
 };

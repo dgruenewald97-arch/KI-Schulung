@@ -1,14 +1,18 @@
 import React from "react";
 import { Sparkles, ArrowRight } from "lucide-react";
+import { BRAND } from "../data/brand.js";
 
 export default function Intro({ next }) {
   return (
     <section className="sec" style={{ paddingTop: 70 }}>
-      <span className="eyebrow"><Sparkles size={14} /> Mobility Minds · Modul 1</span>
+      <span className="eyebrow"><Sparkles size={14} /> {BRAND.name} · Modul 1</span>
       <h1 style={{ fontSize: 44, marginTop: 22 }}>KI sicher und sinnvoll im Agenturalltag nutzen.</h1>
       <p className="lede">
         Ein kurzer Mitmach-Guide für alle im Team: Was KI gut kann, wo Vorsicht nötig ist
         und wie aus einer Aufgabe ein guter Arbeitsauftrag wird.
+      </p>
+      <p style={{ color: "var(--faint)", fontSize: 14, marginTop: 8 }}>
+        {BRAND.name} · {BRAND.positioning}
       </p>
 
       <div className="card intro-card" style={{ marginTop: 30 }}>

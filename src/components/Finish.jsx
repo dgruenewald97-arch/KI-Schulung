@@ -1,5 +1,31 @@
 import React, { useState } from "react";
-import { Trophy, RotateCcw } from "lucide-react";
+import { Trophy, RotateCcw, Copy, Check, ClipboardList } from "lucide-react";
+import { BRAND } from "../data/brand.js";
+
+const CHEAT =
+`PROMPT-SPICKZETTEL · ${BRAND.name}
+
+5 Bausteine eines guten Prompts:
+• Ziel – was soll konkret rauskommen? (Verb + Ergebnis)
+• Kontext – Rolle, Zielgruppe, Situation
+• Material – Rohtext, Stichpunkte, Beispiel, Daten
+• Format – Länge, Struktur, Form
+• Ton & Richtlinien – Tonfall + klare Grenzen ("keine Fakten erfinden")
+
+Marken-Ton: ${BRAND.voice}.
+
+Techniken bei Bedarf:
+• Beispiel vorgeben (Few-Shot)   • Rolle zuweisen
+• Schritt für Schritt denken     • Format erzwingen
+
+Methode je Situation:
+• Klar → Basis-Briefing          • Unklar → Reverse Prompting
+• Ideen → Brainstorming          • Prüfen → Kritischer Stakeholder
+
+Vor dem Verwenden prüfen:
+Fakten? Quellen? Ton? Annahmen sichtbar? Kundentauglich? Würde ich das freigeben?
+
+Im Job: in Langdock arbeiten – keine vertraulichen Daten in private Tools.`;
 
 const STARTERS = [
   "Einen bestehenden Text klarer, freundlicher oder kürzer machen",
@@ -11,11 +37,19 @@ const STARTERS = [
 
 export default function Finish({ restart }) {
   const [cases, setCases] = useState("");
+  const [copied, setCopied] = useState(false);
   const addStarter = (starter) => {
     setCases((current) => {
       if (!current.trim()) return starter;
       return `${current}${current.endsWith("\n") ? "" : "\n"}${starter}`;
     });
+  };
+  const copyCheat = async () => {
+    try {
+      await navigator.clipboard.writeText(CHEAT);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch { /* Clipboard nicht verfügbar – Text steht sichtbar da */ }
   };
 
   return (
@@ -28,6 +62,19 @@ export default function Finish({ restart }) {
       </p>
 
       <div className="card" style={{ marginTop: 30, textAlign: "left" }}>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12, flexWrap: "wrap" }}>
+          <h3 style={{ fontSize: 17, margin: 0, display: "flex", alignItems: "center", gap: 8 }}><ClipboardList size={18} /> Prompt-Spickzettel</h3>
+          <button className="btn btn-ghost" onClick={copyCheat}>
+            {copied ? <><Check size={16} /> Kopiert!</> : <><Copy size={16} /> Spickzettel kopieren</>}
+          </button>
+        </div>
+        <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "8px 0 14px" }}>
+          Zum Mitnehmen: alles Wichtige auf einen Blick. Kopier ihn dir z.B. in deine Notizen oder pinn ihn ans Board.
+        </p>
+        <div className="assembled">{CHEAT}</div>
+      </div>
+
+      <div className="card" style={{ marginTop: 18, textAlign: "left" }}>
         <h3 style={{ fontSize: 17, marginBottom: 4 }}>Deine Use Cases für den Start</h3>
         <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "0 0 14px" }}>
           Wähle keine riesigen Projekte. Starte mit Aufgaben, die regelmäßig vorkommen und bei denen du das Ergebnis gut prüfen kannst.
