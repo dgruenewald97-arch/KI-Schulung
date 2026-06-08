@@ -36,6 +36,9 @@ Formuliere eine freundliche, professionelle E-Mail, die einen vereinbarten Termi
 # Kontext
 ${ctx} Es geht um einen geschätzten Kunden – die Beziehung ist gut und soll es bleiben.
 
+# Material
+Zu verschiebender Termin: Donnerstag. Mögliche Ersatztermine: Montag 14:00 Uhr oder Dienstag 10:30 Uhr.
+
 # Format
 Max. 120 Wörter, mit Betreffzeile, klarer Struktur, eine konkrete Handlungsaufforderung am Ende.
 
@@ -73,6 +76,9 @@ Formuliere eine ruhige, lösungsorientierte Antwort auf eine kritische Kundenrü
 
 # Kontext
 ${ctx} Der Kunde ist mit dem ersten Entwurf unzufrieden und etwas gereizt. Die Zusammenarbeit soll weitergehen – wir wollen weder beschwichtigen noch uns rechtfertigen.
+
+# Material
+Auslöser: eine gereizte Kundenmail zum ersten Entwurf – der Markenton wird noch nicht getroffen.
 
 # Format
 Kurze Mail, max. 130 Wörter: 1 Satz Verständnis, 1–2 Sätze Einordnung, ein klarer Vorschlag (z.B. kurzes Call-Angebot), freundlicher Abschluss.
@@ -113,10 +119,13 @@ Entwickle 8 Headline-Varianten für eine Kampagne zum Thema Fahrrad-Leasing übe
 # Kontext
 ${ctx} Zielgruppe sind Berufstätige 30–50, die pendeln. Markenton ist nahbar, optimistisch, leicht augenzwinkernd – kein Behörden-Deutsch.
 
+# Material
+Beworbenes Angebot: Fahrrad-Leasing über den Arbeitgeber (Dienstrad), günstiger als der Direktkauf.
+
 # Format
 Nummerierte Liste. Mische drei Richtungen: (a) Nutzen/Ersparnis, (b) Lebensgefühl/Freiheit, (c) augenzwinkernd. Pro Headline max. 8 Wörter, dahinter in Klammern die Richtung.
 
-# Richtlinien
+# Ton & Richtlinien
 Keine abgegriffenen Wortspiele ("In die Pedale!"), keine Ausrufezeichen-Flut. Deutsch.`,
       badOut:
 `- Jetzt Fahrrad leasen!
@@ -145,7 +154,10 @@ Keine abgegriffenen Wortspiele ("In die Pedale!"), keine Ausrufezeichen-Flut. De
 Schreibe den Einstiegstext (Intro) für die Landingpage zur Fahrrad-Leasing-Kampagne: erklärt in wenigen Sätzen, was das Angebot bringt, und führt zum Button.
 
 # Kontext
-${ctx} Zielgruppe sind pendelnde Berufstätige. Das Leasing läuft über den Arbeitgeber, die Rate wird vom Brutto abgezogen. Markenton: nahbar, optimistisch, klar.
+${ctx} Zielgruppe sind pendelnde Berufstätige. Markenton: nahbar, optimistisch, klar.
+
+# Material
+Angebot: Fahrrad-Leasing über den Arbeitgeber, die Rate wird vom Brutto abgezogen. Der Button führt zur Radauswahl.
 
 # Format
 Eine Überschrift (max. 7 Wörter) + 2 kurze Absätze (zusammen max. 80 Wörter) + ein knackiger Button-Text.
@@ -179,16 +191,18 @@ Wunschrad finden`,
       bad: "Fass das zusammen: Call mit Kunde, neue LP bis KW so 20?, Maria macht Texte, Design fehlt noch, Budget ok aber nochmal bestätigen, Tracking-Frage offen.",
       good: (ctx) =>
 `# Ziel
-Erstelle aus diesen Roh-Notizen eine saubere, weiterleitbare Zusammenfassung:
-„Call mit Kunde, neue LP bis KW so 20?, Maria macht Texte, Design fehlt noch, Budget ok aber nochmal bestätigen, Tracking-Frage offen.“
+Erstelle aus den Roh-Notizen (siehe Material) eine saubere, weiterleitbare Zusammenfassung.
 
 # Kontext
 ${ctx} Die Zusammenfassung geht ans Team und soll sofort handlungsfähig machen.
 
+# Material
+„Call mit Kunde, neue LP bis KW so 20?, Maria macht Texte, Design fehlt noch, Budget ok aber nochmal bestätigen, Tracking-Frage offen.“
+
 # Format
 Drei Blöcke: (1) Kurz-Summary in 2 Sätzen, (2) To-Dos mit „Wer macht was“, (3) Offene Fragen.
 
-# Richtlinien
+# Ton & Richtlinien
 Nur was in den Notizen steht, nichts erfinden. Unklares als offene Frage markieren.`,
       badOut:
 `Es gab einen Call mit dem Kunden. Eine neue Landingpage soll bis KW 20 entstehen. Maria macht die Texte, das Design fehlt noch und das Budget ist ok. Die Tracking-Frage ist offen.`,
@@ -213,10 +227,13 @@ Offene Fragen
       bad: "Schreib ein Statusupdate für den Kunden, Projekt läuft gut.",
       good: (ctx) =>
 `# Ziel
-Formuliere ein kompaktes Status-Update an den Kunden auf Basis dieser Stichpunkte: Konzept abgenommen, Design zu 80 % fertig, Texte in Freigabe, Launch weiterhin Ende des Monats geplant, eine offene Abhängigkeit (Bildmaterial vom Kunden fehlt noch).
+Formuliere ein kompaktes Status-Update an den Kunden auf Basis der Stichpunkte (siehe Material).
 
 # Kontext
 ${ctx} Der Kunde ist gut informiert, will aber Verlässlichkeit spüren und klar wissen, was von ihm gebraucht wird.
+
+# Material
+Konzept abgenommen; Design zu 80 % fertig; Texte in Freigabe; Launch weiterhin Ende des Monats geplant; offene Abhängigkeit: Bildmaterial vom Kunden fehlt noch.
 
 # Format
 Kurze Mail: 1 Satz Gesamtstand (Ampel grün/gelb), dann 3–4 Bullet-Punkte zu den Arbeitspaketen, dann ein klar markierter Punkt „Wir brauchen von Ihnen“. Max. 140 Wörter.
@@ -260,10 +277,13 @@ Beste Grüße`,
       bad: "Schreib einen LinkedIn-Post darüber, dass ein Kunde mehr Conversions hat.",
       good: (ctx) =>
 `# Ziel
-Schreibe einen LinkedIn-Post aus dieser Kernbotschaft: Ein Kunde hat die Ladezeit seiner Website halbiert und dadurch 18 % mehr Conversions erzielt.
+Schreibe einen LinkedIn-Post aus der Kernbotschaft (siehe Material).
 
 # Kontext
 ${ctx} Wir wollen Kompetenz zeigen, ohne anzugeben. Zielgruppe: Marketing- und E-Commerce-Verantwortliche.
+
+# Material
+Kernbotschaft: Ein Kunde hat die Ladezeit seiner Website halbiert und dadurch 18 % mehr Conversions erzielt.
 
 # Format
 Starker Hook in Zeile 1 (max. 1 Satz, kein Clickbait), dann 3–4 kurze Absätze mit Luft dazwischen, am Ende eine offene Frage als CTA. 3–4 passende Hashtags. Insgesamt unter 130 Wörtern.
@@ -298,10 +318,13 @@ Schlag mir 6 Content-Ideen für die nächsten zwei Wochen auf LinkedIn vor – m
 # Kontext
 ${ctx} Der Account gehört einer Agentur. Zielgruppe: Marketing-Entscheider:innen in mittelständischen Unternehmen. Wir wollen als hilfreich und kompetent wahrgenommen werden, nicht als Selbstdarsteller.
 
+# Material
+Kein festes Ausgangsmaterial – die Ideen sollen aus Kontext und Zielgruppe entstehen.
+
 # Format
 Nummerierte Liste. Pro Idee: ein Aufhänger-Titel + ein Satz, worum es geht + das passende Format (z.B. Karussell, kurzer Text, Umfrage).
 
-# Richtlinien
+# Ton & Richtlinien
 Mische lehrreich, Behind-the-Scenes und meinungsstark. Keine reinen Werbe-Posts, keine generischen „5 Tipps für mehr Reichweite“-Klischees.`,
       badOut:
 `1. Ein Post über unsere Dienstleistungen
@@ -330,11 +353,13 @@ Mische lehrreich, Behind-the-Scenes und meinungsstark. Keine reinen Werbe-Posts,
       bad: "Fass diese Kampagnen-Zahlen zusammen: 142.000 Impressions, CTR 1,8 %, 2.560 Klicks, 73 Conversions, CPA 41 €.",
       good: (ctx) =>
 `# Ziel
-Übersetze diese Kampagnen-Zahlen in eine verständliche Management-Summary für eine Kundin ohne Analyse-Hintergrund:
-142.000 Impressions, CTR 1,8 %, 2.560 Klicks, 73 Conversions, CPA 41 €. Vormonat: CPA 58 €.
+Übersetze die Kampagnen-Zahlen (siehe Material) in eine verständliche Management-Summary für eine Kundin ohne Analyse-Hintergrund.
 
 # Kontext
 ${ctx} Die Kundin will keine Fachbegriffe-Schlacht, sondern wissen: Läuft es gut? Was heißt das fürs Geschäft? Was empfehlen wir?
+
+# Material
+142.000 Impressions, CTR 1,8 %, 2.560 Klicks, 73 Conversions, CPA 41 €. Vormonat: CPA 58 €.
 
 # Format
 Drei kurze Blöcke: (1) Fazit in einem Satz, (2) die wichtigsten 2–3 Zahlen in Klartext übersetzt, (3) eine konkrete Empfehlung.
@@ -366,7 +391,10 @@ Da die Kosten pro Abschluss sinken, lohnt es sich, das Budget hier behutsam zu e
 Hilf mir, mögliche Erklärungen für eine plötzlich gestiegene Absprungrate sauber zu strukturieren – als prüfbare Hypothesen, nicht als feststehende Antwort.
 
 # Kontext
-${ctx} Beobachtung: Auf einer Landingpage ist die Absprungrate in einer Woche von ~45 % auf ~72 % gestiegen. Gleichzeitig kam neuer Traffic über eine neue Anzeigenkampagne. Sonst keine bekannten Änderungen.
+${ctx} Sonst sind keine bewussten Änderungen am System bekannt.
+
+# Material
+Beobachtung: Auf einer Landingpage ist die Absprungrate in einer Woche von ~45 % auf ~72 % gestiegen. Gleichzeitig kam neuer Traffic über eine neue Anzeigenkampagne.
 
 # Format
 Liste von 4–6 Hypothesen. Pro Hypothese: kurze These + wie ich sie konkret prüfen könnte (welche Daten/Schritt).
@@ -398,11 +426,13 @@ Was mir zur Einordnung noch fehlt: Verlief der Anstieg parallel zum Kampagnensta
       bad: "Mach das schöner: „Wir teilen mit, dass das Update am 12. erfolgt. Bei Rückfragen melden.“",
       good: (ctx) =>
 `# Ziel
-Formuliere diese Nachricht freundlicher, klarer und nahbarer um:
-„Wir teilen mit, dass das Update am 12. erfolgt. Bei Rückfragen melden.“
+Formuliere die Nachricht (siehe Material) freundlicher, klarer und nahbarer um.
 
 # Kontext
 ${ctx} Die Nachricht geht an Kolleg:innen und soll informieren, ohne steif zu wirken.
+
+# Material
+„Wir teilen mit, dass das Update am 12. erfolgt. Bei Rückfragen melden.“
 
 # Format
 2–3 kurze Sätze, gerne mit einer freundlichen Einleitung und klarem Hinweis, wo man Fragen loswird.
@@ -424,10 +454,13 @@ Falls danach etwas hakt oder ihr Fragen habt, meldet euch einfach kurz bei mir. 
       bad: "Mach eine Agenda fürs Team-Meeting: Projektstand, Urlaub, neues Tool, Sonstiges.",
       good: (ctx) =>
 `# Ziel
-Erstelle aus diesen losen Punkten eine klare Meeting-Agenda: Projektstand besprechen, Urlaubsplanung Sommer, Einführung eines neuen Tools, Sonstiges.
+Erstelle aus den losen Punkten (siehe Material) eine klare Meeting-Agenda.
 
 # Kontext
 ${ctx} Das Meeting dauert 45 Minuten, 6 Personen, einmal pro Woche. Es soll fokussiert bleiben und nicht ausufern.
+
+# Material
+Projektstand besprechen, Urlaubsplanung Sommer, Einführung eines neuen Tools, Sonstiges.
 
 # Format
 Tabellarische Agenda: pro Punkt ein Titel, ein Ziel (Info / Diskussion / Entscheidung), eine grobe Zeitangabe und wer es vorstellt (als Platzhalter). Am Ende ein 5-Minuten-Puffer.
