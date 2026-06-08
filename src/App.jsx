@@ -8,6 +8,7 @@ import Learn from "./components/Learn.jsx";
 import Compass from "./components/Compass.jsx";
 import RoleSelect from "./components/RoleSelect.jsx";
 import Duel from "./components/Duel.jsx";
+import Methods from "./components/Methods.jsx";
 import Workshop from "./components/Workshop.jsx";
 import Quiz from "./components/Quiz.jsx";
 import Finish from "./components/Finish.jsx";
@@ -18,10 +19,11 @@ import ModuleTwo from "./components/ModuleTwo.jsx";
    Self-paced Onboarding fürs Team auf Basis snipKI Modul 1.
 
    Läuft komplett offline:  npm install && npm run dev
-   - Station 3 (Prompt-Duell) nutzt vorbereitete, rollenspezifische
+   - Station 7 (Prompt-Duell) nutzt vorbereitete, rollenspezifische
      Beispielantworten und braucht KEIN Backend -> Aha-Moment sofort.
-   - Station 4 (Werkstatt) ruft callClaude() auf. Das ist aktuell
-     ein Stub -> hier später Langdock / eigenen Proxy anbinden
+   - Station 9 (Werkstatt) ruft callClaude() auf. Das ist bewusst KEINE
+     echte KI, sondern ein lokaler Struktur-Check des gebauten Prompts.
+     Den fertigen Prompt nimmt man mit nach Langdock
      (siehe src/api/callClaude.js und README / CLAUDE.md).
    ============================================================ */
 export default function App() {
@@ -29,7 +31,7 @@ export default function App() {
   const [role, setRole] = useState(ROLES[0]);
   const [module, setModule] = useState("mod1");
 
-  const sections = ["intro", "basics", "myths", "learn", "compass", "role", "duel", "workshop", "quiz", "finish"];
+  const sections = ["intro", "basics", "myths", "learn", "compass", "role", "duel", "methods", "workshop", "quiz", "finish"];
   const total = sections.length;
   const cur = sections[step];
   const go = (d) => setStep((s) => Math.min(total - 1, Math.max(0, s + d)));
@@ -62,6 +64,7 @@ export default function App() {
         {module === "mod1" && cur === "compass" && <Compass />}
         {module === "mod1" && cur === "role" && <RoleSelect role={role} setRole={setRole} />}
         {module === "mod1" && cur === "duel" && <Duel key={role.id} role={role} />}
+        {module === "mod1" && cur === "methods" && <Methods key={role.id} role={role} />}
         {module === "mod1" && cur === "workshop" && <Workshop key={role.id} role={role} />}
         {module === "mod1" && cur === "quiz" && <Quiz />}
         {module === "mod1" && cur === "finish" && <Finish restart={() => setStep(0)} />}

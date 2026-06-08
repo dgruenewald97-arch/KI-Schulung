@@ -10,7 +10,7 @@ export default function Quiz() {
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Trophy size={14} /> Station 9 · Mini-Quiz</span>
+      <span className="eyebrow"><Trophy size={14} /> Station 10 · Mini-Quiz</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Sitzt das Fundament?</h2>
       <p className="lede">Sechs kurze Fragen zu sinnvoller Nutzung, Langdock, Prüfung und gutem Briefing.</p>
 

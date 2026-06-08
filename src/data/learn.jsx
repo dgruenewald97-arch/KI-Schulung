@@ -11,7 +11,7 @@ export const LEARN = [
   {
     ico: <MessageSquareText size={20} />,
     h: "Briefing statt Zauberspruch",
-    p: "Ein guter Prompt ist ein guter Arbeitsauftrag: Ziel, relevanter Kontext, gewünschtes Format, Tonalität und klare Grenzen.",
+    p: "Ein guter Prompt ist ein guter Arbeitsauftrag: Ziel, relevanter Kontext, passendes Material, gewünschtes Format, Tonalität und klare Grenzen.",
   },
   {
     ico: <ShieldCheck size={20} />,

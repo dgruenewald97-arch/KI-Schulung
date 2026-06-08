@@ -1,4 +1,4 @@
-/* Station 8 · Mini-Quiz */
+/* Station 10 · Mini-Quiz */
 export const QUIZ = [
   {
     q: "Welche Methode passt, wenn die Aufgabe noch unscharf ist?",

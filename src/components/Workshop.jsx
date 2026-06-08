@@ -99,7 +99,7 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
 
   return (
     <section className="sec">
-      <span className="eyebrow"><Wand2 size={14} /> Station 8 · Geführte Werkstatt</span>
+      <span className="eyebrow"><Wand2 size={14} /> Station 9 · Geführte Werkstatt</span>
       <h2 style={{ fontSize: 30, marginTop: 18 }}>Baue deinen Prompt mit Leitplanken.</h2>
       <p className="lede">
         Wähle zuerst einen Use Case. Die Felder werden vorbefüllt, und du passt sie an deine echte Aufgabe an.

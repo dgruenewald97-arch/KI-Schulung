@@ -15,7 +15,7 @@ export default function ModuleTwo({ back }) {
         <div className="module-preview-head">
           <CalendarDays size={19} />
           <div>
-            <h2>Geplant für Mittwoch</h2>
+            <h2>Geplant nach der nächsten Schulung</h2>
             <p>Hier entsteht der zweite Teil, sobald die Inhalte aus der Schulung feststehen.</p>
           </div>
         </div>
