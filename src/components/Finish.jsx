@@ -4,6 +4,7 @@ import { Trophy, RotateCcw } from "lucide-react";
 const STARTERS = [
   "Einen bestehenden Text klarer, freundlicher oder kürzer machen",
   "Aus Stichpunkten eine Agenda, Mail oder Zusammenfassung bauen",
+  "Mit KI Ideen brainstormen, clustern und die besten Optionen bewerten",
   "Einen Entwurf aus Kund:innen-, PM-, Kreations- und Compliance-Sicht prüfen",
   "Mit Reverse Prompting aus einer groben Idee einen guten Prompt bauen",
 ];

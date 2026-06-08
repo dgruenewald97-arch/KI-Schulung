@@ -18,6 +18,13 @@ const USE_CASES = [
     ton: "Strukturiert, fragend, kritisch. Markiere fehlende Informationen klar.",
   },
   {
+    id: "brainstorming",
+    label: "Brainstorming",
+    ziel: "Entwickle mehrere Ideen oder Ansätze zu meinem Thema und hilf mir, die besten Optionen auszuwählen.",
+    format: "Erst kurze Rückfragen, dann 10 Ideen, danach Cluster und Top-3-Bewertung nach Wirkung, Aufwand und Risiko.",
+    ton: "Kreativ, konkret, aber nicht beliebig. Keine generischen Standardideen, sondern passend zum Kontext.",
+  },
+  {
     id: "stakeholder",
     label: "Kritische Prüfung",
     ziel: "Prüfe meinen Entwurf aus mehreren Stakeholder-Perspektiven und zeige konkrete Verbesserungen.",

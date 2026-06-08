@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Check, Copy, MessageSquareText, SearchCheck, UsersRound, Zap } from "lucide-react";
+import { Check, Copy, Lightbulb, MessageSquareText, SearchCheck, UsersRound, Zap } from "lucide-react";
 
 const METHODS = [
   {
@@ -46,6 +46,30 @@ Wenn ich geantwortet habe, formuliere daraus:
 2. eine kurze Erklärung, warum der Prompt so aufgebaut ist,
 3. eine Checkliste, worauf ich das Ergebnis prüfen sollte.`,
     takeaway: "Gut für: unscharfe Aufgaben, neue Themen, leere Seite, komplexe Briefings.",
+  },
+  {
+    id: "brainstorming",
+    label: "Brainstorming",
+    ico: <Lightbulb size={17} />,
+    title: "Wenn du erst einmal gute Optionen brauchst",
+    intro: "KI ist stark, wenn sie nicht nur eine Antwort liefern soll, sondern viele Richtungen, Varianten und Bewertungskriterien.",
+    prompt: (role) =>
+`Hilf mir beim Brainstorming zu folgender Aufgabe.
+
+Mein Kontext:
+${role.ctx}
+
+Aufgabe / Thema:
+[Worum geht es? Für welchen Kunden, welches Projekt oder welches Ziel?]
+
+Bitte arbeite in 4 Schritten:
+1. Stelle mir zuerst 3 kurze Rückfragen, falls wichtige Infos fehlen.
+2. Entwickle 10 unterschiedliche Ideen oder Ansätze.
+3. Cluster die Ideen nach Richtung oder Nutzen.
+4. Bewerte die besten 3 Ideen nach Wirkung, Aufwand und Risiko.
+
+Wichtig: Keine generischen Standardideen. Erkläre kurz, warum die Top-Ideen passen.`,
+    takeaway: "Gut für: Kampagnenideen, Headlines, Workshop-Ansätze, Content-Formate, Problemlösungen.",
   },
   {
     id: "stakeholder",

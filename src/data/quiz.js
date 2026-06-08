@@ -11,14 +11,14 @@ export const QUIZ = [
     ex: "Reverse Prompting hilft bei der leeren Seite: Die KI klärt mit dir Ziel, Kontext, Format und Grenzen, bevor sie den eigentlichen Prompt formuliert.",
   },
   {
-    q: "Was gehört in ein gutes Basis-Briefing an KI?",
+    q: "Wie nutzt du KI sinnvoll fürs Brainstorming?",
     opts: [
-      "Nur ein einzelnes Stichwort",
-      "Ziel, Kontext, Material, Format, Ton und wichtige Grenzen",
-      "Möglichst viele Fachbegriffe ohne Erklärung",
+      "Eine einzige Idee verlangen und direkt übernehmen",
+      "Viele Optionen erzeugen lassen, clustern und die besten kritisch bewerten",
+      "Ohne Kontext möglichst zufällige Ideen sammeln",
     ],
     correct: 1,
-    ex: "KI kennt deine Situation nicht automatisch. Je klarer das Briefing, desto brauchbarer der erste Entwurf.",
+    ex: "Brainstorming wird besser, wenn KI mehrere Richtungen entwickelt, sie sortiert und nach Wirkung, Aufwand und Risiko bewertet.",
   },
   {
     q: "Wofür nutzt du die KI als kritischen Stakeholder?",
