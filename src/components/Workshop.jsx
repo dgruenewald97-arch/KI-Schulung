@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Check, Copy, Loader2, Play, Shield, Sparkles, Wand2, X } from "lucide-react";
 import { callClaude } from "../api/callClaude.js";
+import { BRAND } from "../data/brand.js";
 
 const USE_CASES = [
   {
@@ -61,6 +62,10 @@ export default function Workshop({ role }) {
     setTon(useCase.ton);
     setErr("");
     setOut("");
+  };
+
+  const addBrandVoice = () => {
+    setTon((t) => (t.includes(BRAND.voice) ? t : `${t.trim() ? t.trim() + " " : ""}Marken-Ton: ${BRAND.voice}.`));
   };
 
   const assembled =
@@ -134,7 +139,10 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}`;
           <textarea className="ta" rows={2} value={format} onChange={(e) => setFormat(e.target.value)} />
         </div>
         <div className="field" style={{ marginBottom: 0 }}>
-          <label>5. Ton & Richtlinien <span className="hint">- Grenzen, Prüfung, Do's & Don'ts</span></label>
+          <label>
+            5. Ton & Richtlinien <span className="hint">- Grenzen, Prüfung, Do's & Don'ts</span>
+            <button type="button" className="link-add" onClick={addBrandVoice}>+ Marken-Ton</button>
+          </label>
           <textarea className="ta" rows={2} value={ton} onChange={(e) => setTon(e.target.value)} />
         </div>
       </div>
