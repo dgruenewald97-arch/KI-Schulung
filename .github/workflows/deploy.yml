@@ -1,6 +1,9 @@
 name: Deploy to GitHub Pages
 
-# Veröffentlicht die bereits gebauten statischen Dateien aus index.html + assets/.
+# Baut die Vite-App frisch aus dem Quellcode (src/) und veröffentlicht
+# das Build-Ergebnis (dist/) auf GitHub Pages. Dadurch spiegelt die
+# Live-Seite immer den aktuellen Stand im Repo wider – keine manuell
+# committeten Build-Artefakte mehr nötig.
 on:
   push:
     branches: [main]
@@ -18,22 +21,27 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
+      - uses: actions/setup-node@v4
         with:
-          enablement: true
-      - run: |
-          mkdir public
-          cp index.html public/
-          cp -R assets public/assets
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: ./public
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          path: ./dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
