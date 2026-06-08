@@ -18,11 +18,14 @@ Kontext:
 ${role.ctx}
 [Worum geht es, wer ist die Zielgruppe, was ist wichtig?]
 
+Material:
+[Rohtext, Stichpunkte, Beispiel oder Daten – das, womit die KI arbeiten soll]
+
 Format:
 [z.B. Mail, Agenda, LinkedIn-Post, Tabelle, 5 Bulletpoints]
 
 Ton & Grenzen:
-[z.B. professionell, klar, keine neuen Fakten erfinden, im Job Langdock nutzen]`,
+[z.B. professionell, klar, keine neuen Fakten erfinden, Annahmen kennzeichnen]`,
     takeaway: "Gut für: Texte, Zusammenfassungen, erste Entwürfe, Struktur, Varianten.",
   },
   {
@@ -62,11 +65,11 @@ ${role.ctx}
 Aufgabe / Thema:
 [Worum geht es? Für welchen Kunden, welches Projekt oder welches Ziel?]
 
-Bitte arbeite in 4 Schritten:
-1. Stelle mir zuerst 3 kurze Rückfragen, falls wichtige Infos fehlen.
-2. Entwickle 10 unterschiedliche Ideen oder Ansätze.
+Bitte arbeite so:
+1. Stelle mir zuerst bis zu 3 kurze Rückfragen, falls wichtige Infos fehlen, und warte auf meine Antwort.
+2. Entwickle danach 10 unterschiedliche Ideen oder Ansätze.
 3. Cluster die Ideen nach Richtung oder Nutzen.
-4. Bewerte die besten 3 Ideen nach Wirkung, Aufwand und Risiko.
+4. Bewerte die besten 3 nach Wirkung, Aufwand und Risiko.
 
 Wichtig: Keine generischen Standardideen. Erkläre kurz, warum die Top-Ideen passen.`,
     takeaway: "Gut für: Kampagnenideen, Headlines, Workshop-Ansätze, Content-Formate, Problemlösungen.",

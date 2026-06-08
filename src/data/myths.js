@@ -10,7 +10,7 @@ export const MYTHS = [
     tag: "Hürde",
     q: "„Dafür muss ich technisch sein.“",
     t: "Für den Einstieg reicht ein klarer Arbeitsauftrag.",
-    a: "Gute Nutzung beginnt nicht mit Code, sondern mit einem sauberen Briefing: Ziel, Kontext, Format, Ton und Grenzen. Das ist näher an guter Kommunikation als an Programmierung.",
+    a: "Gute Nutzung beginnt nicht mit Code, sondern mit einem sauberen Briefing: Ziel, Kontext, Material, Format, Ton und Grenzen. Das ist näher an guter Kommunikation als an Programmierung.",
   },
   {
     tag: "Risiko",
