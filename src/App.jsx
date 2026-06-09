@@ -9,6 +9,7 @@ import Duel from "./components/Duel.jsx";
 import Methods from "./components/Methods.jsx";
 import Workshop from "./components/Workshop.jsx";
 import Finish from "./components/Finish.jsx";
+import ModuleTwo from "./components/ModuleTwo.jsx";
 
 const STEPS = [
   { id: "intro", title: "Start" },
@@ -24,6 +25,7 @@ const STEPS = [
 export default function App() {
   const [step, setStep] = useState(0);
   const [role, setRole] = useState(ROLES[0]);
+  const [module, setModule] = useState(1);
 
   const total = STEPS.length;
   const current = STEPS[step];
@@ -42,29 +44,43 @@ export default function App() {
       <div className="topbar">
         <div className="topbar-in">
           <div className="logo"><span className="dot" /> KI-Mitmach-Guide</div>
-          <div className="top-step">
-            <span>{current.title}</span>
-            <strong>{step + 1} / {total}</strong>
+          <div className="module-switch">
+            <button className={module === 1 ? "on" : ""} onClick={() => setModule(1)}>Modul 1</button>
+            <button className={module === 2 ? "on" : ""} onClick={() => setModule(2)}>Modul 2</button>
           </div>
+          {module === 1 && (
+            <div className="top-step">
+              <span>{current.title}</span>
+              <strong>{step + 1} / {total}</strong>
+            </div>
+          )}
         </div>
-        <div className="pbar"><div className="pfill" style={{ width: `${((step + 1) / total) * 100}%` }} /></div>
+        {module === 1 && (
+          <div className="pbar"><div className="pfill" style={{ width: `${((step + 1) / total) * 100}%` }} /></div>
+        )}
       </div>
 
       <div className="wrap">
-        {current.id === "intro" && <Intro next={() => go(1)} />}
-        {current.id === "basics" && <Basics />}
-        {current.id === "compass" && <Compass />}
-        {current.id === "role" && <RoleSelect role={role} setRole={setRole} />}
-        {current.id === "duel" && <Duel key={role.id} role={role} />}
-        {current.id === "methods" && <Methods key={role.id} role={role} />}
-        {current.id === "workshop" && <Workshop key={role.id} role={role} />}
-        {current.id === "finish" && <Finish restart={restart} />}
+        {module === 2 ? (
+          <ModuleTwo />
+        ) : (
+          <>
+            {current.id === "intro" && <Intro next={() => go(1)} />}
+            {current.id === "basics" && <Basics />}
+            {current.id === "compass" && <Compass />}
+            {current.id === "role" && <RoleSelect role={role} setRole={setRole} />}
+            {current.id === "duel" && <Duel key={role.id} role={role} />}
+            {current.id === "methods" && <Methods key={role.id} role={role} />}
+            {current.id === "workshop" && <Workshop key={role.id} role={role} />}
+            {current.id === "finish" && <Finish restart={restart} />}
 
-        {current.id !== "intro" && current.id !== "finish" && (
-          <div className="nav">
-            <button className="btn btn-ghost" onClick={() => go(-1)}><ArrowLeft size={17} /> Zurück</button>
-            <button className="btn btn-primary" onClick={() => go(1)}>Weiter zu {next.title} <ArrowRight size={17} /></button>
-          </div>
+            {current.id !== "intro" && current.id !== "finish" && (
+              <div className="nav">
+                <button className="btn btn-ghost" onClick={() => go(-1)}><ArrowLeft size={17} /> Zurück</button>
+                <button className="btn btn-primary" onClick={() => go(1)}>Weiter zu {next.title} <ArrowRight size={17} /></button>
+              </div>
+            )}
+          </>
         )}
       </div>
     </div>
