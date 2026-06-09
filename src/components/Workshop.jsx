@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Check, Copy, Loader2, Play, Shield, Sparkles, Wand2, X } from "lucide-react";
+import { Check, Copy, Cpu, Loader2, Play, Shield, Sparkles, Wand2, X } from "lucide-react";
 import { callClaude } from "../api/callClaude.js";
 import { BRAND, buildPromptContext } from "../data/brand.js";
 
@@ -191,6 +191,32 @@ ${ton || "... Tonfall, Do's & Don'ts, Prüfhinweise"}
           <div style={{ whiteSpace: "pre-wrap", fontSize: 14.5 }}>{out}</div>
         </div>
       )}
+
+      <div className="card" style={{ marginTop: 18 }}>
+        <h3 style={{ fontSize: 17, margin: "0 0 4px", display: "flex", alignItems: "center", gap: 9 }}>
+          <Cpu size={18} style={{ color: "var(--acc)" }} /> In Langdock: das richtige Modell wählen
+        </h3>
+        <p style={{ color: "var(--muted)", fontSize: 13.5, margin: "0 0 14px" }}>
+          Wenn du den Prompt rüberkopierst, entscheidet auch das Modell über die Qualität.
+        </p>
+        <div className="grid g2">
+          <div className="card mini" style={{ margin: 0 }}>
+            <h3>Schnelle Antwort</h3>
+            <p>Einfache, alltägliche Aufgaben und kreative Texte. Geringe Latenz, hohe Geschwindigkeit.</p>
+          </div>
+          <div className="card mini" style={{ margin: 0 }}>
+            <h3>Think Deeper / Smart</h3>
+            <p>Das Modell denkt länger nach. Am besten für komplexe Themen, Analysen und mehrstufige Aufgaben.</p>
+          </div>
+        </div>
+        <div className="workshop-tip" style={{ marginTop: 14 }}>
+          <Sparkles size={16} />
+          <span>
+            Faustregel aus Modul 1: KI besucht URLs <b>nicht</b> wie ein Browser – lieber den Text rauskopieren und einfügen,
+            dann arbeitet sie mit exakten Daten. Dateien (CSV, Word, PowerPoint) kann sie erzeugen, die Qualität schwankt aber je nach Format.
+          </span>
+        </div>
+      </div>
 
       <div className="notice" style={{ marginTop: 18 }}>
         <Shield size={16} />
